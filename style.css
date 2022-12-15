@@ -1,7 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap');
+
 .background{
     background-color:black;
 }
 
 .terminal{
     color:#33FF00;
+    font-family: 'Ubuntu Mono', monospace;
+}
+
+.absolute{
+    position: absolute;
+}
+
+.blinker{
+    animation: blink 1s infinite step-end;
+}
+@keyframes blink {
+    from, to{opacity: 0;}
+    50%{opacity: 1;}
+}
+
+.hidden{
+    visibility: hidden;
+}
+
+.exe{
+    color: darkturquoise;
 }

@@ -1,34 +1,33 @@
-
-var i = 0;
-var txt = 'Hello, my name is Gavin Meregillano :)';
 var blank = "&#9646"
 var j = 0;
 
 
 function intro() {
-
-    blink();
-    write();
-
-
-
+    setTimeout(function(){write("ls", "intro")}, 1000);
+    setTimeout(fileAppear, 1500, "files");
+    setTimeout(function(){write("./portfolio", "runEXE")}, 2000);
+    setTimeout(fileDisappear, 1525, "blinker");
+    setTimeout(fileAppear, 1500, "bottomBlinker");
 }
 
-function blink(){
-    if(j % 2 == 0){
-        document.getElementById("blink").innerHTML += blank;
-    }else{
-        document.getElementById("blink").innerHTML = "";
-    }
-    j++;
-    setTimeout(blink, 300);
-}
 
-function write(){
-    if (i < txt.length) {
-        document.getElementById("intro").innerHTML += txt.charAt(i);
-        i++;
-        setTimeout(write, 100);
+function write(text, element){
+    var i = 0;
+    var txt = text;
+    type(element);
+    function type(element){
+        if (i < txt.length) {
+            document.getElementById(element).innerHTML += txt.charAt(i);
+            i++;
+            setTimeout(type, 100, element);
+        }
     }
 }
 
+function fileAppear(element){
+    document.getElementById(element).style.visibility="visible";
+}
+
+function fileDisappear(element){
+    document.getElementById(element).style.visibility="hidden";
+}
