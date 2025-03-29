@@ -28,9 +28,9 @@
         <div class="about-content">
           <div class="about-text">
             <h1>Gavin Meregillano</h1>
-            <h2>Data Engineer</h2>
+            <h2 id="role-container">Data <span id="role-text">Engineer</span></h2>
             <p>
-              Hi, I'm Gavin and I am passionate about solving data problems. This includes topics such as data engineering, analytics, and machine learning. I have previously interned at Cadence Design Systems and S&P Global as a Data Engineer. Equipped with a plethora of data tooling, I am confident I could effectively solve any problems that come to me. I currently attend UC San Diego's Data Science program, graduating March 2026. I am currently seeking one more internship experience for the summer of 2025 (perferably with cool company merch)!
+              Hi, I'm Gavin and I am passionate about solving data problems. This includes topics such as data engineering, analytics, and machine learning. I am currently incoming at Sony Interactive - Playstation as a analytics engineer for Summer 2025. Additionally, I have previously interned at Cadence Design Systems and S&P Global as a Data Engineer. Equipped with a plethora of data tooling, I am confident I could effectively solve any problems that come to me. I currently attend UC San Diego's Data Science program, graduating March 2026.
             </p>
           </div>
           <img src="imgs/GavinMeregillano.png" alt="Me!" class="about-image">
@@ -201,5 +201,37 @@
         </div>
       </section>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const roleElement = document.getElementById('role-text');
+      const roles = ['Engineer', 'Analyst', 'Scientist',  'Driven Problem Solver', 'Enthusiast'];
+      let currentIndex = 0;
+      
+      roleElement.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+      roleElement.style.display = 'inline-block';
+      
+      function cycleRoles() {
+        roleElement.style.transform = 'translateY(-20px)';
+        roleElement.style.opacity = 0;
+        
+        setTimeout(() => {
+          currentIndex = (currentIndex + 1) % roles.length;
+          roleElement.textContent = roles[currentIndex];
+          
+          roleElement.style.transform = 'translateY(20px)';
+          
+          roleElement.offsetHeight;
+          
+          setTimeout(() => {
+            roleElement.style.transform = 'translateY(0)';
+            roleElement.style.opacity = 1;
+          }, 50);
+        }, 500);
+      }
+      
+      setInterval(cycleRoles, 2000);
+    });
+  </script>
 </body>
 </html>
