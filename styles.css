@@ -13,7 +13,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Chivo', sans-serif;
-  font-weight: bold;
+  font-weight: bold; /* Changed to medium weight */
 }
 
 a {
@@ -218,7 +218,7 @@ section {
   border-radius: 15px;
 }
 
-blog-post-text {
+.blog-post-text { /* Added the missing dot */
   flex: 1;
   text-align: left;
 }

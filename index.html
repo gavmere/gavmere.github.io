@@ -30,7 +30,7 @@
             <h1>Gavin Meregillano</h1>
             <h2 id="role-container">Data <span id="role-text">Engineer</span></h2>
             <p>
-              Hi, I'm Gavin and I am passionate about solving data problems. This includes topics such as data engineering, analytics, and machine learning. I am currently incoming at Sony Interactive - Playstation as a analytics engineer for Summer 2025. Additionally, I have previously interned at Cadence Design Systems and S&P Global as a Data Engineer. Equipped with a plethora of data tooling, I am confident I could effectively solve any problems that come to me. I currently attend UC San Diego's Data Science program, graduating March 2026.
+              Hi, I'm Gavin and I am passionate about solving data problems. This includes topics such as data engineering, analytics, and machine learning. I am currently incoming at Sony Interactive - Playstation as a analytics engineer for Summer 2025. I have previously interned at Cadence Design Systems and S&P Global as a Data Engineer. Equipped with a plethora of data tooling, I am confident I could effectively solve any problems that come to me. I currently attend UC San Diego's Data Science program, graduating March 2026.
             </p>
           </div>
           <img src="imgs/GavinMeregillano.png" alt="Me!" class="about-image">
@@ -97,7 +97,7 @@
           <div class="blog-post">
             <img src="imgs/UCSD-Logo.png" alt="UCSD" class="blog-post-image">
             <div class="blog-post-text">
-              <h3>The Bioregional Center at UCSD - ITS Data Developer</h3>
+              <h3>The Bioregional Center at UCSD - Data Science Researcher</h3>
                 <p>Spearheading data collection through survey creation, geospatial analysis identifying key plant structures in farms, and using custom visual tools to make enriching and useful data analysis for professors, educators, and academics</p>
               <p><strong>Skills/Technology Used: </strong>Python, Survey Creation, Data Communication, arcGIS</p>
             </div>
@@ -143,6 +143,14 @@
             <p>
               I love making cool and interesting projects (at least to me). I use personal projects as a way to learn about new technologies or frameworks. I have developed over 40 projects! Many small and solely developed, but here are my favorites.
             </p>
+          </div>
+          <div class="project">
+            <img src="imgs/LikeMe.png" alt="LikeMe - Celebrity Similarity Finder" class="project-image">
+            <div class="project-text">
+              <h3>LikeMe - Celebrity Look-alike Finder</h3>
+                <p>Developed a web app to find celebrity look-alikes. I was mainly responsible for facial embeddings, similarity search, and backend API development for the project. Optimized to find a lookalike in less than half a second, comparing the user's face to over 1,500 faces. In less than 24 hours, it was used over 300 times by hundreds of distinct users.</p>
+              <p><strong>Skills/Technology Used: </strong>FastAPI, Facial Embedding via Deep Learning, Similarity Searching</p>
+            </div>
           </div>
           <div class="project">
             <img src="imgs/Subset.JPG" alt="Subset - Random Subset API" class="project-image">
@@ -213,32 +221,49 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const roleElement = document.getElementById('role-text');
-      const roles = ['Engineer', 'Analyst', 'Scientist',  'Driven Problem Solver', 'Enthusiast'];
+      const roleContainer = document.getElementById('role-container');
+      const roles = ['Engineer', 'Analyst', 'Scientist', 'Driven Problem Solver', 'Enthusiast', 'Nerd'];
       let currentIndex = 0;
-      
-      roleElement.style.transition = 'transform 0.5s ease, opacity 0.5s ease';
+
+      roleContainer.style.position = 'relative';
+      roleContainer.style.height = roleElement.offsetHeight + 'px';
+      roleContainer.style.overflow = 'hidden';
+      roleContainer.style.display = 'inline-block';
+      roleContainer.style.verticalAlign = 'bottom';
+
       roleElement.style.display = 'inline-block';
-      
-      function cycleRoles() {
-        roleElement.style.transform = 'translateY(-20px)';
-        roleElement.style.opacity = 0;
-        
-        setTimeout(() => {
-          currentIndex = (currentIndex + 1) % roles.length;
-          roleElement.textContent = roles[currentIndex];
-          
-          roleElement.style.transform = 'translateY(20px)';
-          
-          roleElement.offsetHeight;
-          
-          setTimeout(() => {
-            roleElement.style.transform = 'translateY(0)';
-            roleElement.style.opacity = 1;
-          }, 50);
-        }, 500);
+      roleElement.style.transition = 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out';
+      roleElement.style.willChange = 'transform, opacity';
+
+      function verticalSpinTransition(nextIndex) {
+      roleElement.style.transform = 'translateY(-100%)';
+      roleElement.style.opacity = '0';
+
+      roleElement.addEventListener('transitionend', function handler() {
+        roleElement.removeEventListener('transitionend', handler);
+
+        roleElement.textContent = roles[nextIndex];
+        roleElement.style.transition = 'none';
+        roleElement.style.transform = 'translateY(100%)';
+        roleElement.style.opacity = '0';
+
+        roleElement.offsetHeight; 
+
+        roleElement.style.transition = 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out';
+        roleElement.style.transform = 'translateY(0)';
+        roleElement.style.opacity = '1';
+
+      }, { once: true });
       }
-      
-      setInterval(cycleRoles, 2000);
+
+      roleElement.style.transform = 'translateY(0)';
+      roleElement.style.opacity = '1';
+
+      setInterval(() => {
+      const nextIndex = (currentIndex + 1) % roles.length;
+      verticalSpinTransition(nextIndex);
+      currentIndex = nextIndex;
+      }, 2500);
     });
   </script>
 </body>
