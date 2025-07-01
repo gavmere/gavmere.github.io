@@ -122,6 +122,8 @@ section {
   max-width: 100%;
   border-radius: 8px;
   flex-shrink: 0;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 #key-skills {
@@ -558,4 +560,116 @@ section {
     padding: 8px 16px;
     font-size: 14px;
   }
+}
+
+/* DJ Mode Styles */
+.dj-content {
+  display: none;
+}
+
+.turntable-mode .about-text:not(.dj-content) {
+  display: none;
+}
+
+.turntable-mode .dj-content {
+  display: block;
+}
+
+.turntable-mode .key-skills-content:not(.dj-content) {
+  display: none;
+}
+
+.turntable-mode .blog-heading:not(.dj-content) {
+  display: none;
+}
+
+.turntable-mode .blog-post:not(.dj-content) {
+  display: none;
+}
+
+.turntable-mode .projects-heading:not(.dj-content) {
+  display: none;
+}
+
+.turntable-mode .project:not(.dj-content) {
+  display: none;
+}
+
+.turntable-mode .projects-heading.dj-content {
+  display: none;
+}
+
+.turntable-mode #contact {
+  display: none;
+}
+
+.turntable-mode #projects {
+  display: none;
+}
+
+/* DJ Mode Color Scheme */
+.turntable-mode {
+  color: #ffffff;
+}
+
+.turntable-mode h1,
+.turntable-mode h2,
+.turntable-mode h3 {
+  color: #4ade80;
+  text-shadow: 0 0 10px rgba(74, 222, 128, 0.5);
+}
+
+.turntable-mode .button {
+  background: linear-gradient(45deg, #4ade80, #00ccff);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.turntable-mode .button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(74, 222, 128, 0.8);
+}
+
+/* Smooth transitions */
+.about-text,
+.key-skills-content,
+.blog-heading,
+.blog-post,
+.projects-heading,
+.project {
+  transition: opacity 0.3s ease;
+}
+
+#dj-bg-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+  display: none;
+}
+.turntable-mode #dj-bg-canvas {
+  display: block;
+}
+.turntable-mode {
+  background: 
+    radial-gradient(ellipse at 60% 30%, #6a00f4 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 80%, #4ade80 0%, transparent 70%),
+    linear-gradient(120deg, #1a2a1a 0%, #0a0a1a 100%);
+  background-blend-mode: lighten, lighten, normal;
+}
+.turntable-mode::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 40px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 40px);
 }
