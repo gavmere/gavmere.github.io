@@ -607,6 +607,63 @@ section {
   display: none;
 }
 
+/* Inspirations Section (DJ Mode) */
+#inspirations {
+  display: none;
+  background-color: #fff;
+}
+
+.turntable-mode #inspirations {
+  display: block;
+}
+
+.inspirations-content {
+  text-align: center;
+}
+
+.inspirations-heading {
+  margin-bottom: 40px;
+}
+
+.inspirations-heading h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.inspirations-heading p {
+  font-size: 18px;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.spotify-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.spotify-grid iframe {
+  width: 100%;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .spotify-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .inspirations-heading h2 {
+    font-size: 30px;
+  }
+  
+  .inspirations-heading p {
+    font-size: 16px;
+  }
+}
+
 /* DJ Mode Color Scheme */
 .turntable-mode {
   color: #ffffff;
