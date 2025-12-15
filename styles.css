@@ -140,6 +140,8 @@ section {
   height: 200px;
   pointer-events: none;
   z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .tonearm-base {
@@ -194,12 +196,6 @@ section {
   border-radius: 0 0 2px 2px;
 }
 
-/* Hide tonearm by default */
-.tonearm {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
 /* Show and animate tonearm in turntable mode */
 .turntable-mode .tonearm {
   opacity: 1;
@@ -207,6 +203,21 @@ section {
 
 .turntable-mode .tonearm-arm {
   transform: rotate(35deg);
+}
+
+/* Pulse animation for the record */
+@keyframes record-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px 10px rgba(74, 222, 128, 0.6);
+  }
+}
+
+.turntable-mode .about-image {
+  animation: record-pulse var(--pulse-duration, 0.5s) ease-in-out infinite;
+  border-radius: 50%;
 }
 
 /* Tonearm glow in DJ mode */

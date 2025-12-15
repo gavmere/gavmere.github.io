@@ -85,11 +85,26 @@ document.addEventListener('DOMContentLoaded', function() {
     return 0;
   }
 
+  // BPM pulse control
+  const BASE_BPM = 120;
+  const MAX_BPM = 140;
+  let currentBPM = BASE_BPM;
+
+  function updatePulseBPM(speed) {
+    // Map rotation speed to BPM (faster spin = higher BPM)
+    const speedFactor = Math.abs(speed) / MAX_ROTATION_SPEED;
+    currentBPM = BASE_BPM + (MAX_BPM - BASE_BPM) * speedFactor;
+    const pulseDuration = 60 / currentBPM; // Convert BPM to seconds per beat
+    profileImage.style.setProperty('--pulse-duration', pulseDuration + 's');
+  }
+
   function activateTurntableMode() {
     isTurntableMode = true;
     body.style.backgroundColor = '#000000';
     body.style.transition = 'background-color 0.3s ease';
     body.classList.add('turntable-mode');
+    // Set initial pulse based on spin speed
+    updatePulseBPM(autoRotationSpeed);
     if (roleRotationInterval) {
       clearInterval(roleRotationInterval);
       roleRotationInterval = null;
@@ -97,6 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
     autoRotationInterval = setInterval(() => {
       currentRotation += autoRotationSpeed;
       profileImage.style.transform = `rotate(${currentRotation}deg)`;
+      // Update BPM based on current rotation speed
+      updatePulseBPM(autoRotationSpeed);
     }, 16);
   }
 
