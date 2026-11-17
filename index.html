@@ -1,326 +1,1252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gavin Meregillano</title>
-  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Gavin Meregillano — Interactive Setup</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=12" />
 </head>
 <body>
-  <canvas id="dj-bg-canvas"></canvas>
-  <div class="container">
-    <header>
-      <a href="#about">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M22 18.055v2.458c0 1.925-4.655 3.487-10 3.487-5.344 0-10-1.562-10-3.487v-2.458c2.418 1.738 7.005 2.256 10 2.256 3.006 0 7.588-.523 10-2.256zm-10-3.409c-3.006 0-7.588-.523-10-2.256v2.434c0 1.926 4.656 3.487 10 3.487 5.345 0 10-1.562 10-3.487v-2.434c-2.418 1.738-7.005 2.256-10 2.256zm0-14.646c-5.344 0-10 1.562-10 3.488s4.656 3.487 10 3.487c5.345 0 10-1.562 10-3.487 0-1.926-4.655-3.488-10-3.488zm0 8.975c-3.006 0-7.588-.523-10-2.256v2.44c0 1.926 4.656 3.487 10 3.487 5.345 0 10-1.562 10-3.487v-2.44c-2.418 1.738-7.005 2.256-10 2.256z"></svg>
-          <polyline points="16 18 22 12 16 6"></polyline>
-          <polyline points="8 6 2 12 8 18"></polyline>
+  <!-- Subtle Floating Studio HUD -->
+  <header class="hud-bar">
+    <div class="hud-brand" id="hud-home-btn" role="button" tabindex="0" title="Inspect Gavin's profile">
+      <span class="status-led" aria-hidden="true"></span>
+      <div class="hud-identity">
+        <span class="hud-name" id="hud-name-text">Gavin Meregillano</span>
+        <span class="hud-role" id="hud-role-text">Identity Infra at Google / YouTube</span>
+      </div>
+    </div>
+
+    <div class="hud-controls">
+      <button type="button" id="btn-xray" class="hud-btn" title="Show clickable hints in the room">
+        <span class="hud-btn-dot" aria-hidden="true"></span> Hints
+      </button>
+      <button type="button" id="btn-lighting" class="hud-btn hud-icon-btn" title="Switch to dark mode" aria-label="Toggle dark mode">
+        <svg class="icon-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
         </svg>
-        <span class="sr-only">Gavin Meregillano</span>
-      </a>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#blog">Experiences</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-    <main>
-      <section id="about">
-        <div class="about-content">
-          <div class="about-text">
-            <h1>Gavin Meregillano</h1>
-            <h2 id="role-container">Data <span id="role-text">Engineer</span></h2>
-            <p>
-              Hi, I'm Gavin and I am passionate about solving data problems. This includes topics such as data engineering, analytics, and machine learning. I am currently interning at Sony Interactive - Playstation as an analytics engineer. I have previously interned at Cadence Design Systems and S&P Global as a Data Engineer. Equipped with a plethora of data tooling, I am confident I could effectively solve any problems that come to me. I currently attend UC San Diego's Data Science program, graduating March 2026.
-            </p>
-          </div>
-          <div class="about-text dj-content">
-            <h1>DJ Databass</h1>
-            <h2 id="dj-role-container">DJ and EDM Enjoyer <span id="dj-role-text"></span></h2>
-            <p>
-              You found my alter ego! I'm a huge fan of all types of EDM, and I'm always looking for new music to listen to. I've been a bedroom DJ for a bit now, but I occasionally perform for friends. I've also been learning how to produce my own music, and I've been having a lot of fun with it! Expect to see some music made by me soon!
-            </p>
-          </div>
-          <div class="turntable-container">
-            <img src="imgs/headshot.png" alt="Me!" class="about-image">
-            <div class="tonearm">
-              <div class="tonearm-base"></div>
-              <div class="tonearm-arm">
-                <div class="tonearm-head"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="key-skills">
-        <div class="key-skills-content">
-          <h2>Key Skills</h2>
-          <div class="skills-grid">
-            <div class="skill-item">
-              <h3>Data Engineering</h3>
-              <ul>
-                <li>Databricks</li>
-                <li>Spark</li>
-                <li>Scheduling Tools(Airflow)</li>
-                <li>ETL Development</li>
-                <li>Dataset Delivery</li>
-              </ul>
-            </div>
-            <div class="skill-item">
-              <h3>Machine Learning</h3>
-              <ul>
-                <li>Keras</li>
-                <li>Sklearn</li>
-                <li>XGBoost</li>
-                <li>Feature Engineering</li>
-                <li>PCA</li>
-                   </ul>
-            </div>
-            <div class="skill-item">
-              <h3>Programming</h3>
-              <ul>
-                <li>Python</li>
-                <li>SQL</li>
-                <li>Some No-SQL Databases</li>
-                <li>C++</li>
-                <li>Docker</li>
-              </ul>
-            </div>
-            <div class="skill-item">
-              <h3>Cloud Technologies</h3>
-              <ul>
-                <li>AWS <ul><li>S3</li><li>EC2</li></ul></li>
-                <li>GCP <ul><li>BigQuery</li><li>Cloud Storage</li></ul></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="key-skills-content dj-content">
-          <h2>Genres and Artists</h2>
-          <div class="skills-grid">
-            <div class="skill-item">
-              <h3>House</h3>
-              <ul>
-                <li>Jengi</li>
-                <li>Chris Lake</li>
-                <li>Disco Lines</li>
-                <li>Malugi</li>
-              </ul>
-            </div>
-            <div class="skill-item">
-              <h3>UK Garage</h3>
-              <ul>
-                <li>Sammy Virji</li>
-                <li>Higo</li>
-                <li>Preditah</li>
-                <li>Conducta</li>
-                <li>MPH</li>
-              </ul>
-            </div>
-            <div class="skill-item">
-              <h3>Drum and Bass</h3>
-              <ul>
-                <li>Chase & Status</li>
-                <li>Sub Focus</li>
-                <li>Dimension</li>
-              </ul>
-            </div>
-            <div class="skill-item">
-              <h3>Many...Many More</h3>
-              <ul>
-                <li>Ray Volpe</li>
-                <li>t+pazolite</li>
-                <li>Starjunk 95</li>
-                <li>USAO</li>
-                <li>Srav3r</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+        <svg class="icon-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+        </svg>
+      </button>
+      <button type="button" id="btn-mobile-zoom" class="hud-btn mobile-only-btn" title="Zoom in and pan across desk">
+        🔍 Zoom
+      </button>
+      <div class="hud-counter" id="discovery-counter" title="Items explored">
+        0 / 16
+      </div>
+    </div>
+  </header>
 
-      </section>
-      <section id="blog">
-        <div class="blog-content">
-          <div class="blog-heading">
-            <h2>Work Experience</h2>
-            <p>
-              I have worked in Gaming, Financial Services, Tech, Startups, Academia, and IT/Helpdesk. Feel free to check them out!
-            </p>
-          </div>
-          <div class="blog-heading dj-content">
-            <h2>DJ Mixes & Orginals</h2>
-            <p>
-              Coming soon!
-            </p>
-          </div>
-          <div class="blog-post">
-            <img src="imgs/PS.png" alt="Playstation" class="blog-post-image">
-            <div class="blog-post-text">
-              <h3>Sony Interactive Entertainment/Playstation - Analytics Engineering Intern</h3>
-              <p>
-                Developed an automated data governance workflow reducing admin promotion time, built an internal engagement platform connecting employees with office events and activities, and created a Python library enabling rapid development, testing, and deployment of serverless functions within Domo.
-              <p><strong>Skills/Technology Used: </strong>Python, Domo, SQL, Data Governance, Serverless Architecture, Dashboard Development</p>
-            </div>
-          </div>
-          <div class="blog-post">
-            <img src="imgs/UCSD-Logo.png" alt="UCSD" class="blog-post-image">
-            <div class="blog-post-text">
-              <h3>The Bioregional Center at UCSD - Data Science Researcher</h3>
-                <p>Spearheading data collection through survey creation, geospatial analysis identifying key plant structures in farms, and using custom visual tools to make enriching and useful data analysis for professors, educators, and academics</p>
-              <p><strong>Skills/Technology Used: </strong>Python, Survey Creation, Data Communication, arcGIS</p>
-            </div>
-          </div>
-          <div class="blog-post">
-            <img src="imgs/S&P Global.png" alt="S&P Global" class="blog-post-image">
-            <div class="blog-post-text">
-              <h3>S&P Global - Data Engineering Intern</h3>
-              <p>Moved Terabytes of developer productivity data from Redshift to Databricks, won an company wide intern competition to find innovative uses for an LLM, and created dashboards supporting vertical members of the organization.</p>
-              <p><strong>Skills/Technology Used: </strong>Databricks, PySpark, Gen AI, SQL, Python, Power BI</p>
-            </div>
-          </div>
-          <div class="blog-post">
-            <img src="imgs/7sherpas.png" alt="7Sherpas" class="blog-post-image">
-            <div class="blog-post-text">
-              <h3>7Sherpas - Data Science Consultant</h3>
-              <p>Through the Data Science Club at UCSD I was paired with a local start up and helped out to build up their data infrastructure. Devised system design documents as well as making an analytical PostgreSQL database/schema for data science workloads.</p>
-              <p><strong>Skills/Technology Used: </strong>MongoDB, PostgreSQL, Data Cleaning, System Design</p>
-            </div>
-          </div>
-          <div class="blog-post">
-            <img src="imgs/Cadence_Logo.svg.png" alt="Cadence Design Systems" class="blog-post-image">
-            <div class="blog-post-text">
-              <h3>Cadence Design Systems - IT Software Developer Intern</h3>
-              <p>My first hands on enterprise database experience, this is where I learned how to develop good software in a company. Created a data discrepancy finder between two unconnected databases and also created 20+ views for analytics teams.</p>
-              <p><strong>Skills/Technology Used: </strong> MySQL, SAP ERP, Workday, Python</p>
-            </div>
-          </div>
-          <div class="blog-post">
-            <img src="imgs/restech.png" alt="Restech" class="blog-post-image">
-            <div class="blog-post-text">
-              <h3>UC Riverside's Residential IT Department - Student Lead</h3>
-              <p>Successfully led a team of 12 assistants to provide helpdesk and A/V help to thousands of students and faculty (and one time the Department of Defense). I was the sole lead of the team, taking over for a full-time position for over a year while studying.</p>
-              <p><strong>Skills/Technology Used: </strong>Technical communication, Leadership, Helpdesk</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="projects">
-        <div class="projects-content">
-          <div class="projects-heading">
-            <h2>My Projects</h2>
-            <p>
-              I love making cool and interesting projects (at least to me). I use personal projects as a way to learn about new technologies or frameworks. I have developed over 50 projects! Many small and solely developed, but here are my favorites.
-            </p>
-          </div>
-          <div class="projects-heading dj-content">
-            <h2>My Tracks & Mixes</h2>
-            <p>
-              I've produced and released numerous tracks and mixes across various electronic music platforms. Here are some of my favorite productions and live performances that showcase my unique sound and style.
-            </p>
-          </div>
-          <div class="project"> 
-            <img src="imgs/ArXivViz.png" alt="ArXivViz - 3D Research Paper Visualization" class="project-image">
-            <div class="project-text">
-              <h3>ArXivViz - 3D Research Paper Visualization</h3>
-                <p>Visualized the first 10,000 research papers on ArXiv in 3D, performing clustering and dimensionality reduction on embeddings built from the titles and abstracts of the papers. I plotted the results in 3D space using Javascript, HTML, and CSS, and I am currently exploring how to scale this visualization to all ~2.2 million papers on ArXiv.</p>
-              <p><strong>Skills/Technology Used: </strong>K-Means, UMAP, HTML, CSS, Javascript, OpenAI API</p>
-              <div class="project-links">
-                <a href="https://www.gavmere.me/arXivViz/" class="button">Link!</a>
-              </div>
-            </div>
-          </div>
-          <div class="project">
-            <img src="imgs/LikeMe.png" alt="LikeMe - Celebrity Similarity Finder" class="project-image">
-            <div class="project-text">
-              <h3>LikeMe - Celebrity Look-alike Finder</h3>
-                <p>Developed a web app to find celebrity look-alikes. I was mainly responsible for facial embeddings, similarity search, and backend API development for the project. Optimized to find a lookalike in less than half a second, comparing the user's face to over 1,500 faces. In less than 24 hours, it was used over 300 times by hundreds of distinct users.</p>
-              <p><strong>Skills/Technology Used: </strong>FastAPI, Facial Embedding via Deep Learning, Similarity Searching</p>
-            </div>
-          </div>
-          <div class="project">
-            <img src="imgs/Subset.JPG" alt="Subset - Random Subset API" class="project-image">
-            <div class="project-text">
-              <h3>Subset - Random Subset REST API</h3>
-              <p>Created a REST API microservice to randomly create a subset of a dataset. I implemented many database connectors for both SQL and no-SQL databases. I made a local serialization system to ensure all previously generated subsets are retrievable. This is part of a much bigger machine learning project.</p>
-              <p><strong>Skills/Technology Used: </strong>REST API Development, FastAPI, SQL, NoSQL</p>
-            </div>
-          </div>
-          <div class="project">
-            <img src="imgs/chansey.JPG" alt="PokeID - Trading Card Identifier" class="project-image">
-            <div class="project-text">
-              <h3>PokeID - Trading Card Identifier</h3>
-              <p>Trained a convolutional neural network to identify the original 102 Pokemon trading cards. All data tooling was created by me including web scraping, data labeling, and batch processing of the data. I utilized Keras and its pre-processing library to handle training and pre-processing of the images.</p>
-              <p><strong>Skills/Technology Used: </strong>Deep Learning, Keras, Web Scraping, Image Processing, Image data pipelining</p>
-            </div>
-          </div>
-          <div class="project">
-            <img src="imgs/LOLanalysis.JPG" alt="League of Legends Side Analysis" class="project-image">
-            <div class="project-text">
-              <h3>League of Legends Side Analysis</h3>
-              <p>Wrote up an analytics report regarding which side is more likely to win and for what reason. Used statistical analysis techniques as well as Pandas, numpy, and plotly to do analytical processing and creating visualizations.</p>
-              <p><strong>Skills/Technology Used: </strong>Statistical Analysis, Pandas, NumPy, Plotly, Data Visualization</p>
-              <div class="project-links">
-                <a href="https://gavmere.github.io/LeagueOfLegendsAnalysis/" class="button">Link!</a>
-              </div>
-            </div>
-          </div>
-          <div class="project">
-            <img src="imgs/Datasaur.JPG" alt="Datasaur Royale" class="project-image">
-            <div class="project-text">
-              <h3>Datasaur Royale</h3>
-              <p>My team and I created a comprehensive dinosaur survival environment and created a genetic algorithm to find the most optimal Dinosaur parts and personality traits (Fun Fact: Being cooperative really helps). We ended up being one of the winners of the Hackathon!</p>
-              <p><strong>Skills/Technology Used: </strong>Reinforcement Learning, PyGame Simulation, Data Analysis</p>
-            </div>
-          </div>
-          <div class="project">
-            <img src="imgs/annotate.JPG" alt="Annotate It" class="project-image">
-            <div class="project-text">
-              <h3>Annotate It</h3>
-              <p>Building off the original tool made for my PokeID, generalized the image/data labeling pipeline by implementing QOL features such as autocomplete and rewind. After running tests on normal image annotation, it sped up the time it takes to label the image by more than 75% allowing for quick and easy annotation.</p>
-              <p><strong>Skills/Technology Used: </strong>Python, Data Labeling, PyQt</p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="inspirations" class="dj-content">
-        <div class="inspirations-content">
-          <div class="inspirations-heading">
-            <h2>Inspirations</h2>
-            <p>
-              I listen to pretty much everything. Here are some of my favorites accross various genres.
-            </p>
-          </div>
-          <div class="spotify-grid">
-            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/0fVL6EBaQ2X12qQLiFgyg2?utm_source=generator" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/4oXfq53zABX3oq2fQ7zDzj?utm_source=generator" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6dqgA5KawNSuAUk2PLxF5r?utm_source=generator" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/10XPqtGklNRy9p6rTpFyba?utm_source=generator" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1j15Ar0qGDzIR0v3CQv3JL?utm_source=generator" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/1IRRqn75jaZHp7zMT1NGbZ?utm_source=generator" width="50%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-          </div>
-        </div>
-      </section>
-    </main>
-    <section id="contact">
-        <div class="contact-content">
-          <div class="contact-heading">
-            <h2>Contacts</h2>
-          </div>
-          <div class="contact-icons">
-            <a href="https://github.com/gavmere" target="_blank">
-              <img src="imgs/github.png" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" alt="GitHub" class="contact-icon">
-            </a>
-            <a href="https://www.linkedin.com/in/gavin-meregillano/" target="_blank">
-                <img src="imgs/linkedIn.png" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" alt="linkedIn" class="contact-icon">
-            </a>
-            <a href="mailto:gavinmeregillano@gmail.com">
-                <img src="imgs/email.png" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon" alt="Email" class="contact-icon">
-            </a>
-          </div>
-        </div>
-      </section>
-  </div>
+  <!-- Floating Hover Tag (follows cursor over interactive objects) -->
+  <div id="hover-tooltip" class="hover-tooltip" aria-hidden="true"></div>
 
-  <script src="script.js"></script>
+  <!-- Main Interactive Battle-Station Canvas -->
+  <main class="stage" id="stage">
+    <svg
+      id="setup-svg"
+      viewBox="120 -12 960 724"
+      preserveAspectRatio="xMidYMid meet"
+      aria-label="Gavin Meregillano interactive desk setup"
+    >
+      <defs>
+        <!-- Subtle Xreart / Architectural Millimeter Wall Grid -->
+        <pattern id="wall-grid" width="28" height="28" patternUnits="userSpaceOnUse">
+          <path d="M 28 0 L 0 0 0 28" fill="none" class="grid-line" stroke-width="1" />
+        </pattern>
+        <pattern id="wall-subgrid" width="140" height="140" patternUnits="userSpaceOnUse">
+          <rect width="140" height="140" fill="url(#wall-grid)" />
+          <path d="M 140 0 L 0 0 0 140" fill="none" class="grid-major-line" stroke-width="1.2" />
+        </pattern>
+        <pattern id="pc-white-mesh" width="5" height="5" patternUnits="userSpaceOnUse">
+          <circle cx="2.5" cy="2.5" r="0.95" fill="rgba(100, 116, 139, 0.34)" />
+        </pattern>
+
+        <!-- Subtle 3% Monochromatic Print/Studio Grain -->
+        <filter id="film-grain" x="0%" y="0%" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="3" stitchTiles="stitch" result="noise" />
+          <feColorMatrix type="saturate" values="0" in="noise" result="monoNoise" />
+          <feComponentTransfer in="monoNoise" result="softNoise">
+            <feFuncA type="linear" slope="0.032" />
+          </feComponentTransfer>
+        </filter>
+
+        <!-- Gradients -->
+        <radialGradient id="wall-keylight" cx="50%" cy="42%" r="55%">
+          <stop offset="0%" stop-color="#ffffff" stop-opacity="0.45" />
+          <stop offset="100%" stop-color="#ffffff" stop-opacity="0" />
+        </radialGradient>
+
+        <linearGradient id="desk-surface-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#f8fafc" />
+          <stop offset="100%" stop-color="#ffffff" />
+        </linearGradient>
+
+        <linearGradient id="pc-glass-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e0f2fe" stop-opacity="0.38" />
+          <stop offset="50%" stop-color="#bae6fd" stop-opacity="0.12" />
+          <stop offset="100%" stop-color="#f8fafc" stop-opacity="0.28" />
+        </linearGradient>
+
+        <linearGradient id="main-screen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0f172a" />
+          <stop offset="100%" stop-color="#1e1b4b" />
+        </linearGradient>
+
+        <linearGradient id="vert-screen-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#090d16" />
+          <stop offset="100%" stop-color="#111827" />
+        </linearGradient>
+
+        <linearGradient id="ps5-blueprint-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0d3b66" />
+          <stop offset="100%" stop-color="#06213d" />
+        </linearGradient>
+
+        <linearGradient id="hoodie-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#334155" />
+          <stop offset="100%" stop-color="#1e293b" />
+        </linearGradient>
+      </defs>
+
+      <!-- ================= 0. STUDIO ROOM ARCHITECTURE (INFINITE FULL-BLEED) ================= -->
+      <!-- Wall -->
+      <rect x="-3000" y="-2400" width="7200" height="3024" class="room-wall" />
+      <rect x="-3000" y="-2400" width="7200" height="3024" fill="url(#wall-subgrid)" />
+      <rect x="-1200" y="-900" width="3600" height="2200" fill="url(#wall-keylight)" class="day-keylight" />
+
+      <!-- Crisp Flat Ambient Backplate Behind Monitors (No Gaussian Blur) -->
+      <rect x="422" y="242" width="414" height="220" rx="28" class="monitor-ambient-glow" opacity="0.45" />
+
+      <!-- Baseboard Molding & Floor -->
+      <rect x="-3000" y="624" width="7200" height="12" class="room-baseboard" />
+      <line x1="-3000" y1="624" x2="4200" y2="624" class="room-baseboard-top" stroke-width="1.5" />
+      <rect x="-3000" y="636" width="7200" height="2400" class="room-floor" />
+      <line x1="-3000" y1="636" x2="4200" y2="636" stroke="rgba(0,0,0,0.12)" stroke-width="1.5" />
+
+      <!-- Flat Pill-Shaped Ground Contact Silhouettes (Hard-Edged Vector) -->
+      <rect x="190" y="661" width="96" height="8" rx="4" fill="#1e2028" opacity="0.16" />
+      <rect x="914" y="661" width="96" height="8" rx="4" fill="#1e2028" opacity="0.16" />
+      <rect x="506" y="681" width="164" height="12" rx="6" fill="#1e2028" opacity="0.18" />
+
+      <!-- ================= 1. WALL TROPHIES (CENTERED AROUND X=600) ================= -->
+      <!--
+        TOP SHELF (x=475..725, y=106, center 600):
+          Left:  Noogler Hat on Floating Shelf  (center 538)
+          Right: YouTube Creator Play Plaque    (center 662)
+        TRIPTYCH ROW (y=140..214, 116x74 each, 28px gap):
+          Left:   Cadence Silicon Chip Teardown (x=398..514, center 456)
+          Center: S&P Global Stock Ticker       (x=542..658, center 600)
+          Right:  PS5 DualSense Teardown        (x=686..802, center 744)
+        WALL BADGE:
+          UCSD Triton Plaque                    (x=352..412, y=262..322, center 382,292)
+      -->
+
+      <!-- 1. GOOGLE NOOGLER HAT + YOUTUBE PLAQUE (Single Centered Shelf) -->
+      <g class="clickable-item" data-id="google" data-label="Google / YouTube — Identity Infra" tabindex="0" role="button">
+        <g>
+          <!-- Hard-Edged Offset Solid Shadow Behind Shelf -->
+          <rect x="481" y="112" width="250" height="10" rx="2.5" fill="#1e2028" opacity="0.16" />
+          <!-- Centered White Floating Display Shelf -->
+          <rect x="475" y="106" width="250" height="10" rx="2.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.4" />
+          <line x1="477" y1="113.5" x2="723" y2="113.5" stroke="#e2e8f0" stroke-width="2" stroke-linecap="round" />
+
+          <!-- Shelf Contact Shadows -->
+          <ellipse cx="538" cy="106" rx="34" ry="1.4" fill="#1e2028" opacity="0.16" />
+          <ellipse cx="662" cy="106" rx="18" ry="1.4" fill="#1e2028" opacity="0.18" />
+
+          <!-- Noogler Cap (Seated Cleanly on Shelf Top y=106) -->
+          <g transform="translate(538, 106)">
+            <!-- Blue Left Panel -->
+            <path d="M-36 -3.5 C-36 -28, -14 -38, 0 -38 C-10 -34, -17 -20, -17 -3.5 Z" fill="#3b82f6" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round" />
+            <!-- Red Right Panel -->
+            <path d="M36 -3.5 C36 -28, 14 -38, 0 -38 C10 -34, 17 -20, 17 -3.5 Z" fill="#e05252" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round" />
+            <!-- Center Yellow Panel -->
+            <path d="M-17 -3.5 C-17 -20, -10 -34, 0 -38 C10 -34, 17 -20, 17 -3.5 Z" fill="#facc15" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round" />
+            <!-- Subtle Crown Sheen -->
+            <path d="M-29 -12 C-27 -24, -18 -31, -8 -34" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="1.5" stroke-linecap="round" />
+
+            <!-- Green Brim Seated Flush on Shelf Top -->
+            <path d="M-40 -0.3 C-40 -5, -18 -6.5, 0 -6.5 C18 -6.5, 40 -5, 40 -0.3 Q0 0.3 -40 -0.3 Z" fill="#22a559" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round" />
+
+            <!-- Compact Propeller Spindle & Finial Cap -->
+            <ellipse cx="0" cy="-38" rx="4.2" ry="2.1" fill="#1e293b" />
+            <line x1="0" y1="-39" x2="0" y2="-49" stroke="#475569" stroke-width="1.8" stroke-linecap="round" />
+            <circle cx="0" cy="-43" r="2.1" fill="#facc15" stroke="#1e293b" stroke-width="0.9" />
+            <!-- Outer translate keeps propeller at top; inner group animates scaleX -->
+            <g transform="translate(0, -47.5)">
+              <g class="propeller-spin">
+                <path d="M0 0 C-6.5 -3.5, -16 -4.2, -18 -0.8 C-19 2, -8.5 2.5, 0 0 Z" fill="#3b82f6" stroke="#1e293b" stroke-width="0.9" />
+                <path d="M0 0 C6.5 3.5, 16 4.2, 18 0.8 C19 -2, 8.5 -2.5, 0 0 Z" fill="#60a5fa" stroke="#1e293b" stroke-width="0.9" />
+                <circle cx="0" cy="0" r="2.2" fill="#1e40af" />
+              </g>
+            </g>
+            <!-- Top Green Finial Cap (Covers Spindle Tip) -->
+            <circle cx="0" cy="-50.2" r="2.2" fill="#22a559" stroke="#1e293b" stroke-width="0.9" />
+          </g>
+
+          <!-- YouTube Logo Plaque (Right Half of Shelf, Visible Brushed-Slate Stand) -->
+          <g transform="translate(662, 70)">
+            <!-- Hard-Edged Offset Wall Shadow (Behind Stand & Plaque) -->
+            <g transform="translate(5, 5) scale(1.04) translate(-34, -24)" opacity="0.18">
+              <path
+                d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+                fill="#1e2028"
+              />
+            </g>
+
+            <!-- Visible Pedestal Neck & Base Seated at Shelf Top (y=+36) -->
+            <rect x="-4" y="23" width="8" height="10" fill="#475569" stroke="#1e293b" stroke-width="1.2" />
+            <line x1="-1.8" y1="24.2" x2="-1.8" y2="32" stroke="#94a3b8" stroke-width="1.1" stroke-linecap="round" />
+            <rect x="-18" y="32.5" width="36" height="3.5" rx="1.5" fill="#334155" stroke="#1e293b" stroke-width="1.2" />
+
+            <!-- Official YouTube Red Plaque with Crisp Bevel & Sheen -->
+            <g transform="scale(1.04) translate(-34, -24)">
+              <path
+                d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"
+                fill="#f01010"
+                stroke="#991b1b"
+                stroke-width="1.15"
+              />
+              <path d="M7.5 11 C8 6 10.5 4.2 18 3.2 C26 2.3 42 2.3 50 3.2" fill="none" stroke="rgba(255,255,255,0.34)" stroke-width="1.3" stroke-linecap="round" />
+              <path d="M 44,24 27,14.5 27,33.5 Z" fill="#FFFFFF" />
+            </g>
+          </g>
+        </g>
+        <circle cx="600" cy="78" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 2A. CADENCE — EDA SILICON & PCB TEARDOWN FRAME (Bottom-Left, Hard-Edged Offset Shadow) -->
+      <g class="clickable-item" data-id="cadence" data-label="Cadence Design Systems" tabindex="0" role="button">
+        <g>
+          <rect x="404" y="146" width="116" height="74" rx="4" fill="#1e2028" opacity="0.2" />
+          <!-- Matte Black Frame + Deep EDA / PCB Shadowbox Backing -->
+          <rect x="398" y="140" width="116" height="74" rx="4" fill="#18181b" stroke="#09090b" stroke-width="1.2" />
+          <rect x="405" y="147" width="102" height="60" rx="2" fill="#091514" stroke="#13332e" stroke-width="1" />
+
+          <!-- Minimal Corner Fiducial Ticks -->
+          <path d="M411 156 V152 H415 M497 152 H501 V156 M411 198 V202 H415 M497 202 H501 V198" fill="none" stroke="rgba(52,211,153,0.38)" stroke-width="1" stroke-linecap="round" />
+
+          <!-- Centered Multi-Core SoC & Crisp EDA Routing Traces -->
+          <g transform="translate(456, 177)">
+            <!-- 45-Degree PCB Bus Traces -->
+            <g fill="none" stroke="#10b981" stroke-width="1.25" opacity="0.65" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M-16 -8 H-26 L-32 -14 H-39" />
+              <path d="M-16 0 H-39" />
+              <path d="M-16 8 H-26 L-32 14 H-39" />
+              <path d="M16 -8 H26 L32 -14 H39" />
+              <path d="M16 0 H39" />
+              <path d="M16 8 H26 L32 14 H39" />
+            </g>
+            <!-- Gold High-Speed Vertical Differential Traces -->
+            <g fill="none" stroke="#f59e0b" stroke-width="1.2" opacity="0.88" stroke-linecap="round">
+              <path d="M-5 -16 V-23" />
+              <path d="M5 -16 V-23" />
+              <path d="M-5 16 V23" />
+              <path d="M5 16 V23" />
+            </g>
+            <!-- Plated Through-Hole Micro-Vias -->
+            <g fill="#091514" stroke="#fbbf24" stroke-width="1.1">
+              <circle cx="-39" cy="-14" r="1.6" />
+              <circle cx="-39" cy="0" r="1.6" />
+              <circle cx="-39" cy="14" r="1.6" />
+              <circle cx="39" cy="-14" r="1.6" />
+              <circle cx="39" cy="0" r="1.6" />
+              <circle cx="39" cy="14" r="1.6" />
+            </g>
+
+            <!-- Crisp Gold QFN Package Pins (3 per side) -->
+            <g stroke="#fbbf24" stroke-width="1.8" stroke-linecap="round">
+              <line x1="-18.5" y1="-7" x2="-15" y2="-7" />
+              <line x1="-18.5" y1="0" x2="-15" y2="0" />
+              <line x1="-18.5" y1="7" x2="-15" y2="7" />
+              <line x1="15" y1="-7" x2="18.5" y2="-7" />
+              <line x1="15" y1="0" x2="18.5" y2="0" />
+              <line x1="15" y1="7" x2="18.5" y2="7" />
+              <line x1="-7" y1="-18.5" x2="-7" y2="-15" />
+              <line x1="0" y1="-18.5" x2="0" y2="-15" />
+              <line x1="7" y1="-18.5" x2="7" y2="-15" />
+              <line x1="-7" y1="15" x2="-7" y2="18.5" />
+              <line x1="0" y1="15" x2="0" y2="18.5" />
+              <line x1="7" y1="15" x2="7" y2="18.5" />
+            </g>
+
+            <!-- Emerald Interposer Substrate + Gold Pin-1 Fiducial -->
+            <rect x="-15" y="-15" width="30" height="30" rx="2.5" fill="#065f46" stroke="#34d399" stroke-width="1.15" />
+            <polygon points="-13.2,-13.2 -9,-13.2 -13.2,-9" fill="#fbbf24" />
+
+            <!-- Exposed Multi-Core Silicon Die Floorplan -->
+            <rect x="-10" y="-10" width="20" height="20" rx="1.5" fill="#0f172a" stroke="#cbd5e1" stroke-width="1" />
+            <!-- Compute Core Cluster A & B (Cyan) -->
+            <rect x="-8" y="-8" width="7.2" height="7.2" rx="0.8" fill="#1d4ed8" stroke="#38bdf8" stroke-width="0.7" />
+            <rect x="0.8" y="-8" width="7.2" height="7.2" rx="0.8" fill="#1d4ed8" stroke="#38bdf8" stroke-width="0.7" />
+            <!-- Shared SRAM Cache Bank (Violet) -->
+            <rect x="-8" y="0.8" width="9.8" height="7.2" rx="0.8" fill="#3730a3" stroke="#a78bfa" stroke-width="0.7" />
+            <!-- Cadence Red High-Speed SerDes / PHY Block -->
+            <rect x="3.4" y="0.8" width="4.6" height="7.2" rx="0.8" fill="#b91c1c" stroke="#f87171" stroke-width="0.7" />
+          </g>
+        </g>
+        <circle cx="456" cy="177" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 2B. S&P GLOBAL — STOCK TICKER FRAME (Bottom-Center, Hard-Edged Offset Shadow) -->
+      <g class="clickable-item" data-id="spglobal" data-label="S&P Global — Stock Ticker" tabindex="0" role="button">
+        <g>
+          <rect x="548" y="146" width="116" height="74" rx="4" fill="#1e2028" opacity="0.2" />
+          <!-- Matte Black Frame + Dark OLED Chart -->
+          <rect x="542" y="140" width="116" height="74" rx="4" fill="#18181b" stroke="#09090b" stroke-width="1.2" />
+          <rect x="549" y="147" width="102" height="60" rx="2" fill="#090f1a" stroke="#1e293b" stroke-width="1" />
+
+          <!-- Subtle Chart Grid -->
+          <g stroke="rgba(148,163,184,0.13)" stroke-width="0.8">
+            <line x1="554" y1="162" x2="646" y2="162" />
+            <line x1="554" y1="177" x2="646" y2="177" />
+            <line x1="554" y1="192" x2="646" y2="192" />
+            <line x1="576" y1="152" x2="576" y2="202" />
+            <line x1="600" y1="152" x2="600" y2="202" />
+            <line x1="624" y1="152" x2="624" y2="202" />
+          </g>
+
+          <!-- Translucent Area Wash & Smooth Cyan EMA Curve (Separated from Candles) -->
+          <path d="M558 197 Q578 188 598 181 T641 156 L641 202 L558 202 Z" fill="#38bdf8" opacity="0.09" />
+          <path d="M558 197 Q578 188 598 181 T641 156" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-linecap="round" opacity="0.9" />
+
+          <!-- Crisp OHLC Candlesticks -->
+          <g stroke-width="1.25">
+            <line x1="560" y1="184" x2="560" y2="198" stroke="#34d399" /><rect x="557.5" y="187" width="5" height="7" rx="0.6" fill="#34d399" />
+            <line x1="572" y1="179" x2="572" y2="193" stroke="#f87171" /><rect x="569.5" y="182" width="5" height="7" rx="0.6" fill="#f87171" />
+            <line x1="584" y1="173" x2="584" y2="188" stroke="#34d399" /><rect x="581.5" y="176" width="5" height="8" rx="0.6" fill="#34d399" />
+            <line x1="596" y1="168" x2="596" y2="182" stroke="#34d399" /><rect x="593.5" y="170" width="5" height="7" rx="0.6" fill="#34d399" />
+            <line x1="608" y1="171" x2="608" y2="184" stroke="#f87171" /><rect x="605.5" y="174" width="5" height="6" rx="0.6" fill="#f87171" />
+            <line x1="620" y1="161" x2="620" y2="177" stroke="#34d399" /><rect x="617.5" y="164" width="5" height="9" rx="0.6" fill="#34d399" />
+            <line x1="632" y1="155" x2="632" y2="170" stroke="#34d399" /><rect x="629.5" y="157" width="5" height="9" rx="0.6" fill="#34d399" />
+          </g>
+
+          <!-- Live Trend Endpoint Dot -->
+          <circle cx="641" cy="156" r="2.6" fill="#7dd3fc" class="ticker-pulse" />
+        </g>
+        <circle cx="600" cy="177" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 2C. PLAYSTATION — PS5 CONTROLLER FRAME (Bottom-Right, Hard-Edged Offset Shadow) -->
+      <g class="clickable-item" data-id="playstation" data-label="PlayStation — PS5 Controller" tabindex="0" role="button">
+        <g>
+          <rect x="692" y="146" width="116" height="74" rx="4" fill="#1e2028" opacity="0.2" />
+          <!-- Matte Black Frame + Sony Blueprint Navy Backing -->
+          <rect x="686" y="140" width="116" height="74" rx="4" fill="#18181b" stroke="#09090b" stroke-width="1.2" />
+          <rect x="693" y="147" width="102" height="60" rx="2" fill="url(#ps5-blueprint-grad)" stroke="#1e4976" stroke-width="1" />
+
+          <!-- Minimal Blueprint Corner Registration Ticks -->
+          <path d="M699 156 V152 H703 M785 152 H789 V156 M699 198 V202 H703 M785 202 H789 V198" fill="none" stroke="rgba(186,230,253,0.38)" stroke-width="1" stroke-linecap="round" />
+
+          <!-- Centered PS5 DualSense Controller -->
+          <g transform="translate(744, 176.5)">
+            <!-- L1 & R1 Black Shoulder Bumpers -->
+            <path d="M-23 -12.5 Q-19 -17 -13.5 -16 L-12.5 -12.5 Z" fill="#18181b" stroke="#09090b" stroke-width="0.9" />
+            <path d="M23 -12.5 Q19 -17 13.5 -16 L12.5 -12.5 Z" fill="#18181b" stroke="#09090b" stroke-width="0.9" />
+            <!-- White Ergonomic DualSense Shell (Sleek Tapered Grips) -->
+            <path
+              d="M-23 -13.5 Q0 -16 23 -13.5 C28.5 -11 32 3 29.5 16.5 C28.5 21 23 21.5 20 17 L13.5 7.5 Q0 5.8 -13.5 7.5 L-20 17 C-23 21.5 -28.5 21 -29.5 16.5 C-32 3 -28.5 -11 -23 -13.5 Z"
+              fill="#f8fafc"
+              stroke="#0f172a"
+              stroke-width="1.25"
+              stroke-linejoin="round"
+            />
+            <!-- Signature Black Y-Trim & Inner Grip Accents -->
+            <path
+              d="M-12.5 -14.2 L-10.5 -3.5 Q0 -1.5 10.5 -3.5 L12.5 -14.2 Q15 -5.5 16 4.5 L22 18 L19 18.5 L13.5 7.5 Q0 5.8 -13.5 7.5 L-19 18.5 L-22 18 L-16 4.5 Q-15 -5.5 -12.5 -14.2 Z"
+              fill="#141418"
+            />
+            <!-- Contrasting Matte Touchpad + DualSense Blue Lightbar Strips -->
+            <path d="M-11 -14.3 H11 L9.5 -4.2 Q0 -3 -9.5 -4.2 Z" fill="#cbd5e1" stroke="#64748b" stroke-width="0.75" />
+            <line x1="-11.3" y1="-13.8" x2="-9.7" y2="-4.4" stroke="#38bdf8" stroke-width="1.35" stroke-linecap="round" />
+            <line x1="11.3" y1="-13.8" x2="9.7" y2="-4.4" stroke="#38bdf8" stroke-width="1.35" stroke-linecap="round" />
+            <!-- Crisp Left D-Pad -->
+            <path d="M-24 -5.2 h2.4 v-2.4 h2.3 v2.4 h2.4 v2.3 h-2.4 v2.4 h-2.3 v-2.4 h-2.4 z" fill="#cbd5e1" stroke="#475569" stroke-width="0.75" stroke-linejoin="round" />
+            <!-- Crisp Right 4 Face Buttons -->
+            <circle cx="20.2" cy="-7.6" r="1.75" fill="#cbd5e1" stroke="#475569" stroke-width="0.75" />
+            <circle cx="23.8" cy="-4.1" r="1.75" fill="#cbd5e1" stroke="#475569" stroke-width="0.75" />
+            <circle cx="20.2" cy="-0.6" r="1.75" fill="#cbd5e1" stroke="#475569" stroke-width="0.75" />
+            <circle cx="16.6" cy="-4.1" r="1.75" fill="#cbd5e1" stroke="#475569" stroke-width="0.75" />
+            <!-- Well-Spaced Symmetrical Analog Sticks -->
+            <circle cx="-8.5" cy="2.2" r="3.8" fill="#09090b" stroke="#334155" stroke-width="0.9" />
+            <circle cx="-8.5" cy="2.2" r="2.1" fill="#1e293b" />
+            <circle cx="8.5" cy="2.2" r="3.8" fill="#09090b" stroke="#334155" stroke-width="0.9" />
+            <circle cx="8.5" cy="2.2" r="2.1" fill="#1e293b" />
+            <!-- Center PS Button & Mute Pill (Clear Breathing Room) -->
+            <circle cx="0" cy="1.8" r="1.4" fill="#475569" />
+            <rect x="-1.7" y="4.9" width="3.4" height="1.1" rx="0.55" fill="#64748b" />
+          </g>
+        </g>
+        <circle cx="744" cy="177" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 1D. UCSD TRITON EMBLEM (Left of Monitor Cluster) -->
+      <g class="clickable-item" data-id="ucsd" data-label="UC San Diego — Data Science '26" tabindex="0" role="button">
+        <!-- Crisp Hard-Edged Offset Shadow -->
+        <rect x="357" y="267" width="60" height="60" rx="9" fill="#1e2028" opacity="0.2" />
+        <!-- UCSD Navy Plaque -->
+        <rect x="352" y="262" width="60" height="60" rx="9" fill="#182b49" stroke="#0f172a" stroke-width="1.6" />
+        <rect x="356.5" y="266.5" width="51" height="51" rx="6" fill="none" stroke="rgba(250, 204, 21, 0.35)" stroke-width="1" />
+        <!-- Symmetrical UCSD Triton Trident (45-deg Diagonal Gold Silhouette) -->
+        <g transform="translate(382, 292) rotate(45) scale(0.84)">
+          <path
+            d="M0 -24 L6 -11.5 L2.6 -13 L2.6 -1.5 L11.5 -1.5 L11.5 -10 L8.5 -8.5 L15 -18.5 L16.5 -2 L2.6 4.5 L2.6 22 L0 24.5 L-2.6 22 L-2.6 4.5 L-16.5 -2 L-15 -18.5 L-8.5 -8.5 L-11.5 -10 L-11.5 -1.5 L-2.6 -1.5 L-2.6 -13 L-6 -11.5 Z"
+            fill="#facc15"
+          />
+        </g>
+        <circle cx="382" cy="292" r="6" class="xray-pin" />
+      </g>
+
+      <!-- ================= 2. AUTONOMOUS STANDING DESK IN WHITE ================= -->
+      <g class="clickable-item" data-id="desk" data-label="Autonomous Standing Desk in White" tabindex="0" role="button">
+        <!-- Under-Desk White Motorized Frame & Cable Tray -->
+        <rect x="224" y="505" width="752" height="9" rx="2" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.2" />
+        <rect x="546" y="509" width="84" height="5" rx="2" fill="#cbd5e1" stroke="#94a3b8" stroke-width="0.9" />
+
+        <!-- Left Single-Column Telescoping T-Leg -->
+        <g>
+          <!-- Upper Inner Stage & Mounting Flange -->
+          <rect x="225" y="506" width="26" height="5" rx="1" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.1" />
+          <rect x="228" y="511" width="20" height="34" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.3" />
+          <!-- Telescoping Collar Seam -->
+          <rect x="224" y="543" width="28" height="3.5" rx="1.2" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1" />
+          <!-- Lower Outer Column -->
+          <rect x="225" y="546" width="26" height="109" rx="2" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
+          <line x1="227.5" y1="548" x2="227.5" y2="653" stroke="#ffffff" stroke-width="1.4" />
+          <!-- Sleek Beveled T-Foot Base & Leveling Pads -->
+          <rect x="218" y="653" width="40" height="4.5" rx="1.5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.1" />
+          <polygon points="196,657 280,657 286,664 190,664" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round" />
+          <line x1="197" y1="658.5" x2="279" y2="658.5" stroke="#ffffff" stroke-width="1.2" />
+          <rect x="195" y="664" width="12" height="3.5" rx="1.5" fill="#1e293b" />
+          <rect x="269" y="664" width="12" height="3.5" rx="1.5" fill="#1e293b" />
+        </g>
+
+        <!-- Right Single-Column Telescoping T-Leg -->
+        <g>
+          <!-- Upper Inner Stage & Mounting Flange -->
+          <rect x="949" y="506" width="26" height="5" rx="1" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.1" />
+          <rect x="952" y="511" width="20" height="34" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.3" />
+          <!-- Telescoping Collar Seam -->
+          <rect x="948" y="543" width="28" height="3.5" rx="1.2" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1" />
+          <!-- Lower Outer Column -->
+          <rect x="949" y="546" width="26" height="109" rx="2" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5" />
+          <line x1="951.5" y1="548" x2="951.5" y2="653" stroke="#ffffff" stroke-width="1.4" />
+          <!-- Sleek Beveled T-Foot Base & Leveling Pads -->
+          <rect x="942" y="653" width="40" height="4.5" rx="1.5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.1" />
+          <polygon points="920,657 1004,657 1010,664 914,664" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.4" stroke-linejoin="round" />
+          <line x1="921" y1="658.5" x2="1003" y2="658.5" stroke="#ffffff" stroke-width="1.2" />
+          <rect x="919" y="664" width="12" height="3.5" rx="1.5" fill="#1e293b" />
+          <rect x="993" y="664" width="12" height="3.5" rx="1.5" fill="#1e293b" />
+        </g>
+
+        <!-- White Desktop Perspective Top Surface -->
+        <polygon
+          points="182,452 1018,452 1048,490 152,490"
+          fill="url(#desk-surface-grad)"
+          stroke="#cbd5e1"
+          stroke-width="1.6"
+        />
+        <!-- Recessed Back Cable Grommets (Clear of PC, Speakers & Collectibles) -->
+        <g>
+          <ellipse cx="358" cy="459" rx="9.5" ry="3" fill="#cbd5e1" stroke="#94a3b8" stroke-width="0.9" />
+          <ellipse cx="358" cy="459" rx="7" ry="2" fill="#334155" />
+          <ellipse cx="842" cy="459" rx="9.5" ry="3" fill="#cbd5e1" stroke="#94a3b8" stroke-width="0.9" />
+          <ellipse cx="842" cy="459" rx="7" ry="2" fill="#334155" />
+        </g>
+
+        <!-- Crisp White Tabletop Front Bevel Slab -->
+        <rect x="152" y="490" width="896" height="16" rx="4" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.5" />
+        <line x1="154" y1="492" x2="1046" y2="492" stroke="#ffffff" stroke-width="1.5" />
+
+        <!-- Autonomous Digital Height Keypad (Front-Right Under Edge) -->
+        <rect x="862" y="505" width="52" height="11" rx="2.5" fill="#18181b" stroke="#09090b" stroke-width="1" />
+        <polygon points="871,512 874,508.5 877,512" fill="#94a3b8" />
+        <polygon points="881,509 884,512.5 887,509" fill="#94a3b8" />
+        <circle cx="896" cy="510.5" r="1.4" fill="#38bdf8" />
+        <circle cx="905" cy="510.5" r="1.4" fill="#64748b" />
+
+        <circle cx="920" cy="498" r="6" class="xray-pin" />
+      </g>
+
+      <g transform="translate(46, 0)">
+      <!-- Crisp Flat Pill Contact Silhouettes on White Tabletop -->
+      <rect x="176" y="465" width="108" height="7" rx="3.5" fill="#cbd5e1" />
+      <rect x="326" y="460" width="64" height="6" rx="3" fill="#cbd5e1" />
+      <rect x="498" y="460" width="76" height="5.5" rx="2.75" fill="#cbd5e1" />
+      <rect x="702" y="460" width="44" height="5.5" rx="2.75" fill="#cbd5e1" />
+      <rect x="810" y="460" width="64" height="6" rx="3" fill="#cbd5e1" />
+
+      <!-- ================= 3. DESK HARDWARE & DUAL MONITORS ================= -->
+
+      <!-- 3A. WHITE CUSTOM PC TOWER (Clean Front-Facing Dual Fans, Shifted Left for Asymmetry) -->
+      <g class="clickable-item" data-id="pc" data-label="Custom White PC Rig" tabindex="0" role="button" transform="translate(-18, 0)">
+        <g>
+          <!-- Case Feet (Front-Left, Front-Right & Rear-Right Perspective Foot) -->
+          <rect x="202" y="464" width="14" height="5" rx="1.5" fill="#334155" />
+          <rect x="266" y="464" width="14" height="5" rx="1.5" fill="#334155" />
+          <rect x="285" y="456" width="11" height="4.5" rx="1.5" fill="#475569" />
+
+          <!-- Subtle 3D Right Side Panel (Receding Cleanly Behind Front Chassis) -->
+          <polygon points="283,305 299,313 299,457 283,464" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5" stroke-linejoin="round" />
+          <polygon points="287,315 296,320 296,447 287,452" fill="#cbd5e1" opacity="0.55" />
+
+          <!-- Main Matte-White Front Chassis -->
+          <rect x="196" y="304" width="90" height="161" rx="4.5" fill="#ffffff" stroke="#94a3b8" stroke-width="1.8" />
+          <!-- Top Front I/O Bar & Power LED -->
+          <line x1="210" y1="313" x2="244" y2="313" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round" />
+          <rect x="250" y="311.8" width="8" height="2.4" rx="1.2" fill="#94a3b8" />
+          <circle cx="272" cy="313" r="2.2" fill="#38bdf8" />
+
+          <!-- Recessed Front Intake Cavity -->
+          <rect x="208" y="324" width="66" height="126" rx="4" fill="#dce3ec" stroke="#cbd5e1" stroke-width="1.2" />
+
+          <!-- Top Large Spinning White Intake Fan (Behind Mesh) -->
+          <g transform="translate(241, 357)">
+            <circle cx="0" cy="0" r="23.5" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.3" />
+            <circle cx="0" cy="0" r="20.5" fill="#eef2f6" />
+            <g class="pc-fan-spin">
+              <path d="M0 -18.5 C5 -12, 5.5 -6, 0 -3 C-4 -7, -3 -12.5, 0 -18.5 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M16 -9.2 C13 -2, 8 1, 2.6 -1.5 C4.5 -6.5, 10 -9, 16 -9.2 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M16 9.2 C9 9.5, 4 6.5, 2.6 1.5 C8 -0.5, 12.5 3, 16 9.2 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M0 18.5 C-5 12, -5.5 6, 0 3 C4 7, 3 12.5, 0 18.5 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M-16 9.2 C-13 2, -8 -1, -2.6 1.5 C-4.5 6.5, -10 9, -16 9.2 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M-16 -9.2 C-9 -9.5, -4 -6.5, -2.6 -1.5 C-8 0.5, -12.5 -3, -16 -9.2 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <circle cx="0" cy="0" r="5.8" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+            </g>
+          </g>
+
+          <!-- Bottom Large Spinning White Intake Fan (Behind Mesh) -->
+          <g transform="translate(241, 415)">
+            <circle cx="0" cy="0" r="23.5" fill="#cbd5e1" stroke="#94a3b8" stroke-width="1.3" />
+            <circle cx="0" cy="0" r="20.5" fill="#eef2f6" />
+            <g class="pc-fan-spin">
+              <path d="M0 -18.5 C5 -12, 5.5 -6, 0 -3 C-4 -7, -3 -12.5, 0 -18.5 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M16 -9.2 C13 -2, 8 1, 2.6 -1.5 C4.5 -6.5, 10 -9, 16 -9.2 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M16 9.2 C9 9.5, 4 6.5, 2.6 1.5 C8 -0.5, 12.5 3, 16 9.2 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M0 18.5 C-5 12, -5.5 6, 0 3 C4 7, 3 12.5, 0 18.5 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M-16 9.2 C-13 2, -8 -1, -2.6 1.5 C-4.5 6.5, -10 9, -16 9.2 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <path d="M-16 -9.2 C-9 -9.5, -4 -6.5, -2.6 -1.5 C-8 0.5, -12.5 -3, -16 -9.2 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="0.8" />
+              <circle cx="0" cy="0" r="5.8" fill="#ffffff" stroke="#94a3b8" stroke-width="1" />
+            </g>
+          </g>
+
+          <!-- White Perforated Mesh Grille Overlay in Front of Fans -->
+          <rect x="208" y="324" width="66" height="126" rx="4" fill="rgba(255, 255, 255, 0.22)" pointer-events="none" />
+          <rect x="208" y="324" width="66" height="126" rx="4" fill="url(#pc-white-mesh)" stroke="#94a3b8" stroke-width="1.2" pointer-events="none" />
+        </g>
+        <circle cx="241" cy="386" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 3B. LEFT STUDIO MONITOR SPEAKER (KRK Rokit Style, Toed-In) -->
+      <g class="clickable-item" data-id="speakers" data-label="Studio Monitors — DJ Databass" tabindex="0" role="button">
+        <g>
+          <!-- Acoustic Isolation Foam Pad (Matched Perspective Base, Zero Corner Gap) -->
+          <polygon points="337,456 326,453 326,459 337,463" fill="#18181b" stroke="#09090b" stroke-width="1" stroke-linejoin="round" />
+          <rect x="336" y="456" width="54" height="7" rx="1.8" fill="#27272a" stroke="#09090b" stroke-width="1.2" />
+          <line x1="338" y1="459.5" x2="388" y2="459.5" stroke="#3f3f46" stroke-width="0.9" />
+          <!-- Outer Left Side Cabinet Wall (Receding Toe-In Perspective) -->
+          <polygon points="340,366 326,371 326,453 340,456" fill="#0f0f12" stroke="#27272a" stroke-width="1.1" stroke-linejoin="round" />
+          <!-- Matte Black Rounded Acoustic Baffle -->
+          <rect x="336" y="364" width="54" height="92" rx="4.5" fill="#18181b" stroke="#09090b" stroke-width="1.8" />
+          <rect x="340" y="368.5" width="46" height="83" rx="3" fill="#202127" />
+          <!-- Top KRK Accent & Silk-Dome Waveguide Tweeter -->
+          <rect x="358" y="373" width="10" height="2" rx="1" fill="#eab308" opacity="0.9" />
+          <ellipse cx="363" cy="387" rx="9.5" ry="7.6" fill="#141418" stroke="#33353e" stroke-width="1.2" />
+          <circle cx="363" cy="387" r="4.3" fill="#09090b" stroke="#27272a" stroke-width="0.8" />
+          <path d="M360.5 385.2 A3 3 0 0 1 364.5 384.5" fill="none" stroke="#52525b" stroke-width="1" stroke-linecap="round" />
+          <!-- Iconic Yellow Kevlar Woofer Cone -->
+          <g class="speaker-cone">
+            <circle cx="363" cy="418" r="18" fill="#09090b" stroke="#33353e" stroke-width="1.4" />
+            <circle cx="363" cy="418" r="14" fill="#eab308" />
+            <circle cx="363" cy="418" r="9.8" fill="none" stroke="#ca8a04" stroke-width="1.2" />
+            <circle cx="363" cy="418" r="5" fill="#111115" stroke="#27272a" stroke-width="1" />
+            <circle cx="351.5" cy="406.5" r="0.9" fill="#52525b" />
+            <circle cx="374.5" cy="406.5" r="0.9" fill="#52525b" />
+            <circle cx="351.5" cy="429.5" r="0.9" fill="#52525b" />
+            <circle cx="374.5" cy="429.5" r="0.9" fill="#52525b" />
+          </g>
+          <!-- Front Bass Reflex Slot -->
+          <rect x="347" y="442.5" width="32" height="4" rx="2" fill="#09090b" stroke="#27272a" stroke-width="0.8" />
+        </g>
+        <circle cx="363" cy="408" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 3C. MAIN LANDSCAPE MONITOR (Center Desk, X=408..664) -->
+      <g class="clickable-item" data-id="mainMonitor" data-label="Main Monitor — Projects (50+)" tabindex="0" role="button">
+        <g>
+          <!-- Sleek Anodized Monitor Stand Base & Stem (Stem Drawn cleanly In Front of Footplate) -->
+          <rect x="502" y="457" width="68" height="5.5" rx="2.2" fill="#27272a" stroke="#09090b" stroke-width="1.3" />
+          <line x1="504" y1="458.3" x2="568" y2="458.3" stroke="#52525b" stroke-width="0.9" />
+          <rect x="528" y="432" width="16" height="27" rx="2" fill="#27272a" stroke="#09090b" stroke-width="1.3" />
+          <rect x="531" y="434" width="3.5" height="23" rx="1" fill="#3f3f46" opacity="0.7" />
+
+          <!-- Uniform Thin-Bezel Monitor Chassis -->
+          <rect x="408" y="286" width="256" height="148" rx="6" fill="#18181b" stroke="#09090b" stroke-width="1.8" />
+          <rect x="413.5" y="291.5" width="245" height="137" rx="3" fill="url(#main-screen-grad)" />
+
+          <!-- Screen Top Window Chrome -->
+          <rect x="413.5" y="291.5" width="245" height="15" rx="2" fill="rgba(15,23,42,0.88)" />
+          <circle cx="423" cy="299" r="2.2" fill="#ef4444" />
+          <circle cx="431" cy="299" r="2.2" fill="#f59e0b" />
+          <circle cx="439" cy="299" r="2.2" fill="#10b981" />
+          <text id="main-screen-title" x="536" y="301.5" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="6.4" fill="#cbd5e1">arxiv-viz // 10,000 papers 3D</text>
+
+          <!-- Project SVG Slideshow Viewport (Left Canvas, Smooth Horizontal Slide) -->
+          <g id="main-screen-slideshow">
+            <defs>
+              <clipPath id="main-slide-clip">
+                <rect x="421" y="312" width="144" height="110" rx="4" />
+              </clipPath>
+            </defs>
+            <rect x="421" y="312" width="144" height="110" rx="4" fill="rgba(15,23,42,0.48)" stroke="#1e293b" stroke-width="0.9" />
+
+            <g clip-path="url(#main-slide-clip)">
+              <g id="main-slide-track" class="project-slide-track">
+                <!-- Slide 0: ArXivViz 3D -->
+                <g class="project-slide" transform="translate(0, 0)">
+                  <line x1="493" y1="364" x2="447" y2="392" stroke="rgba(148,163,184,0.34)" stroke-width="1" />
+                  <line x1="493" y1="364" x2="549" y2="388" stroke="rgba(148,163,184,0.34)" stroke-width="1" />
+                  <line x1="493" y1="364" x2="493" y2="320" stroke="rgba(148,163,184,0.34)" stroke-width="1" />
+                  <circle cx="476" cy="346" r="22" fill="rgba(56,189,248,0.13)" />
+                  <circle cx="512" cy="360" r="24" fill="rgba(168,85,247,0.15)" />
+                  <circle cx="468" cy="342" r="3" fill="#38bdf8" />
+                  <circle cx="481" cy="336" r="2.5" fill="#38bdf8" />
+                  <circle cx="474" cy="353" r="2.5" fill="#7dd3fc" />
+                  <circle cx="495" cy="348" r="3" fill="#34d399" />
+                  <circle cx="506" cy="341" r="2.2" fill="#34d399" />
+                  <circle cx="516" cy="358" r="3.2" fill="#c084fc" />
+                  <circle cx="526" cy="351" r="2.5" fill="#f472b6" />
+                  <circle cx="509" cy="369" r="2.4" fill="#f472b6" />
+                </g>
+
+                <!-- Slide 1: LikeMe Face Vector Search -->
+                <g class="project-slide" transform="translate(150, 0)">
+                  <rect x="433" y="323" width="44" height="52" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.1" />
+                  <circle cx="455" cy="342" r="9.5" fill="none" stroke="#38bdf8" stroke-width="1.2" />
+                  <path d="M441 366 Q455 354 469 366" fill="none" stroke="#38bdf8" stroke-width="1.2" />
+                  <circle cx="451.5" cy="340" r="1.4" fill="#f472b6" />
+                  <circle cx="458.5" cy="340" r="1.4" fill="#f472b6" />
+                  <circle cx="455" cy="345" r="1.4" fill="#34d399" />
+                  <line x1="485" y1="335" x2="552" y2="335" stroke="#334155" stroke-width="4" stroke-linecap="round" />
+                  <line x1="485" y1="335" x2="544" y2="335" stroke="#34d399" stroke-width="4" stroke-linecap="round" />
+                  <line x1="485" y1="349" x2="552" y2="349" stroke="#334155" stroke-width="4" stroke-linecap="round" />
+                  <line x1="485" y1="349" x2="532" y2="349" stroke="#38bdf8" stroke-width="4" stroke-linecap="round" />
+                  <line x1="485" y1="363" x2="552" y2="363" stroke="#334155" stroke-width="4" stroke-linecap="round" />
+                  <line x1="485" y1="363" x2="518" y2="363" stroke="#a78bfa" stroke-width="4" stroke-linecap="round" />
+                  <text x="493" y="390" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#34d399">98.4% MATCH · &lt;500ms</text>
+                </g>
+
+                <!-- Slide 2: PokeID Card CNN -->
+                <g class="project-slide" transform="translate(300, 0)">
+                  <rect x="433" y="323" width="38" height="54" rx="3" fill="#0f172a" stroke="#facc15" stroke-width="1.3" />
+                  <rect x="437" y="328" width="30" height="22" rx="1.5" fill="#1e293b" stroke="#38bdf8" stroke-width="0.9" />
+                  <circle cx="452" cy="339" r="7" fill="#f472b6" opacity="0.85" />
+                  <rect x="437" y="355" width="24" height="3" rx="1" fill="#cbd5e1" />
+                  <rect x="437" y="361" width="18" height="3" rx="1" fill="#64748b" />
+                  <rect x="481" y="325" width="72" height="50" rx="3" fill="#111827" stroke="#334155" stroke-width="1" />
+                  <rect x="489" y="332" width="14" height="14" rx="2" fill="rgba(56,189,248,0.28)" stroke="#38bdf8" stroke-width="0.8" />
+                  <rect x="510" y="332" width="14" height="14" rx="2" fill="rgba(52,211,153,0.28)" stroke="#34d399" stroke-width="0.8" />
+                  <rect x="531" y="332" width="14" height="14" rx="2" fill="rgba(192,132,252,0.28)" stroke="#c084fc" stroke-width="0.8" />
+                  <text x="517" y="363" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.4" fill="#facc15">CNN · 102 CARDS</text>
+                </g>
+
+                <!-- Slide 3: Subset API Sampler -->
+                <g class="project-slide" transform="translate(450, 0)">
+                  <ellipse cx="456" cy="334" rx="18" ry="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2" />
+                  <path d="M438 334 V364 A18 6 0 0 0 474 364 V334" fill="#0f172a" stroke="#38bdf8" stroke-width="1.2" />
+                  <ellipse cx="456" cy="349" rx="18" ry="5" fill="none" stroke="#334155" stroke-width="1" />
+                  <path d="M478 349 H498" stroke="#34d399" stroke-width="1.6" stroke-dasharray="3 2" />
+                  <polygon points="498,346 504,349 498,352" fill="#34d399" />
+                  <rect x="508" y="325" width="44" height="12" rx="2" fill="#1e293b" stroke="#34d399" stroke-width="1" />
+                  <rect x="508" y="343" width="44" height="12" rx="2" fill="#1e293b" stroke="#a78bfa" stroke-width="1" />
+                  <rect x="508" y="361" width="44" height="12" rx="2" fill="#1e293b" stroke="#f472b6" stroke-width="1" />
+                  <text x="456" y="384" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#cbd5e1">SQL + NoSQL</text>
+                </g>
+
+                <!-- Slide 4: LoL Side Win-Rate -->
+                <g class="project-slide" transform="translate(600, 0)">
+                  <rect x="434" y="324" width="54" height="54" rx="4" fill="#0f172a" stroke="#334155" stroke-width="1.1" />
+                  <polygon points="436,326 486,326 436,376" fill="rgba(56,189,248,0.28)" />
+                  <polygon points="486,326 486,376 436,376" fill="rgba(239,68,68,0.28)" />
+                  <line x1="436" y1="376" x2="486" y2="326" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3 2" />
+                  <rect x="502" y="344" width="16" height="32" rx="2" fill="#38bdf8" />
+                  <rect x="526" y="352" width="16" height="24" rx="2" fill="#ef4444" />
+                  <text x="510" y="338" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#38bdf8">BLU</text>
+                  <text x="534" y="346" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#ef4444">RED</text>
+                </g>
+
+                <!-- Slide 5: Datasaur Royale RL -->
+                <g class="project-slide" transform="translate(750, 0)">
+                  <path d="M442 372 V348 H452 V336 H470 V346 H462 V356 H474 V372 H466 V362 H450 V372 Z" fill="#34d399" />
+                  <circle cx="464" cy="341" r="1.5" fill="#09090b" />
+                  <polyline points="484,372 496,364 508,366 522,348 536,342 552,328" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <circle cx="552" cy="328" r="3" fill="#fbbf24" />
+                  <text x="518" y="387" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.4" fill="#fbbf24">GEN FITNESS +RL</text>
+                </g>
+
+                <!-- Slide 6: Annotate It Labeler -->
+                <g class="project-slide" transform="translate(900, 0)">
+                  <rect x="434" y="324" width="60" height="48" rx="3" fill="#1e293b" stroke="#334155" stroke-width="1" />
+                  <rect x="444" y="333" width="38" height="28" rx="1.5" fill="rgba(52,211,153,0.16)" stroke="#34d399" stroke-width="1.3" stroke-dasharray="3 2" />
+                  <rect x="502" y="328" width="48" height="10" rx="2" fill="#2563eb" />
+                  <rect x="502" y="344" width="42" height="10" rx="2" fill="#334155" />
+                  <rect x="502" y="360" width="46" height="10" rx="2" fill="#334155" />
+                  <text x="493" y="388" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-size="5.5" fill="#34d399">+75% FASTER LABELING</text>
+                </g>
+              </g>
+            </g>
+
+            <!-- Slideshow Progress Indicator Dots -->
+            <g id="main-slide-dots">
+              <circle cx="434" cy="412" r="2" class="slide-dot is-active" data-slide-dot="0" />
+              <circle cx="442" cy="412" r="2" class="slide-dot" data-slide-dot="1" />
+              <circle cx="450" cy="412" r="2" class="slide-dot" data-slide-dot="2" />
+              <circle cx="458" cy="412" r="2" class="slide-dot" data-slide-dot="3" />
+              <circle cx="466" cy="412" r="2" class="slide-dot" data-slide-dot="4" />
+              <circle cx="474" cy="412" r="2" class="slide-dot" data-slide-dot="5" />
+              <circle cx="482" cy="412" r="2" class="slide-dot" data-slide-dot="6" />
+            </g>
+          </g>
+
+          <!-- Right UI Inspector Panel on Screen -->
+          <rect x="572" y="312" width="79" height="110" rx="4" fill="rgba(15,23,42,0.72)" stroke="#334155" stroke-width="0.9" />
+          <rect x="579" y="322" width="42" height="4.5" rx="1.5" fill="#38bdf8" />
+          <rect x="579" y="332" width="64" height="3.5" rx="1.5" fill="#64748b" />
+          <rect x="579" y="340" width="52" height="3.5" rx="1.5" fill="#475569" />
+          <rect x="579" y="357" width="65" height="25" rx="3" fill="#1e293b" stroke="#334155" stroke-width="0.9" />
+          <text id="main-screen-badge" x="611.5" y="372" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-weight="500" font-size="6.2" fill="#34d399">50+ PROJECTS</text>
+          <rect x="579" y="391" width="65" height="18" rx="3" fill="#2563eb" />
+          <text id="main-screen-btn-label" x="611.5" y="402.5" text-anchor="middle" font-family="'IBM Plex Mono', monospace" font-weight="600" font-size="5.8" fill="#ffffff">OPEN PROJECTS</text>
+        </g>
+        <circle cx="500" cy="340" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 3D. VERTICAL MONITOR (Flush Right Next to Main Monitor! X=668..780) -->
+      <g class="clickable-item" data-id="vertMonitor" data-label="Vertical Monitor — Skills & Stack" tabindex="0" role="button">
+        <g>
+          <!-- Sleek Anodized Stand Base & Stem (Stem Drawn Cleanly In Front of Footplate) -->
+          <rect x="706" y="457" width="36" height="5.5" rx="2.2" fill="#27272a" stroke="#09090b" stroke-width="1.3" />
+          <line x1="708" y1="458.3" x2="740" y2="458.3" stroke="#52525b" stroke-width="0.9" />
+          <rect x="719" y="442" width="10" height="17" rx="1.5" fill="#27272a" stroke="#09090b" stroke-width="1.3" />
+          <rect x="721" y="444" width="2.5" height="13" rx="0.8" fill="#3f3f46" opacity="0.7" />
+
+          <!-- Sleek Uniform Thin-Bezel Vertical Display -->
+          <rect x="668" y="250" width="112" height="194" rx="6" fill="#18181b" stroke="#09090b" stroke-width="1.8" />
+          <rect x="673.5" y="255.5" width="101" height="183" rx="3" fill="url(#vert-screen-grad)" />
+
+          <!-- Top Terminal / Code Pane -->
+          <rect x="673.5" y="255.5" width="101" height="14" rx="2" fill="#111827" />
+          <text id="vert-screen-prompt" x="681" y="265" font-family="'IBM Plex Mono', monospace" font-size="6" fill="#4ade80">gavin@infra:~</text>
+
+          <!-- Syntax-Highlighted HackerTyper Scrolling Code Block -->
+          <g transform="translate(682, 279)">
+            <defs>
+              <clipPath id="vert-code-clip">
+                <rect x="0" y="0" width="84" height="44" />
+              </clipPath>
+            </defs>
+            <g clip-path="url(#vert-code-clip)">
+              <g class="hacker-code-stream">
+                <!-- Block A (90px tall) -->
+                <rect x="0" y="0" width="32" height="4" rx="1.5" fill="#f472b6" />
+                <rect x="36" y="0" width="42" height="4" rx="1.5" fill="#38bdf8" />
+                <rect x="8" y="9" width="56" height="4" rx="1.5" fill="#a78bfa" />
+                <rect x="8" y="18" width="44" height="4" rx="1.5" fill="#34d399" />
+                <rect x="8" y="27" width="66" height="4" rx="1.5" fill="#fbbf24" />
+                <rect x="0" y="36" width="26" height="4" rx="1.5" fill="#f472b6" />
+                <rect x="30" y="36" width="38" height="4" rx="1.5" fill="#38bdf8" />
+                <rect x="12" y="45" width="50" height="4" rx="1.5" fill="#34d399" />
+                <rect x="12" y="54" width="62" height="4" rx="1.5" fill="#a78bfa" />
+                <rect x="4" y="63" width="36" height="4" rx="1.5" fill="#fbbf24" />
+                <rect x="44" y="63" width="28" height="4" rx="1.5" fill="#38bdf8" />
+                <rect x="8" y="72" width="54" height="4" rx="1.5" fill="#f472b6" />
+                <rect x="0" y="81" width="40" height="4" rx="1.5" fill="#34d399" />
+                <!-- Block B (Seamless Loop Clone at +90px) -->
+                <rect x="0" y="90" width="32" height="4" rx="1.5" fill="#f472b6" />
+                <rect x="36" y="90" width="42" height="4" rx="1.5" fill="#38bdf8" />
+                <rect x="8" y="99" width="56" height="4" rx="1.5" fill="#a78bfa" />
+                <rect x="8" y="108" width="44" height="4" rx="1.5" fill="#34d399" />
+                <rect x="8" y="117" width="66" height="4" rx="1.5" fill="#fbbf24" />
+                <rect x="0" y="126" width="26" height="4" rx="1.5" fill="#f472b6" />
+                <rect x="30" y="126" width="38" height="4" rx="1.5" fill="#38bdf8" />
+                <rect x="12" y="135" width="50" height="4" rx="1.5" fill="#34d399" />
+                <rect x="12" y="144" width="62" height="4" rx="1.5" fill="#a78bfa" />
+                <rect x="4" y="153" width="36" height="4" rx="1.5" fill="#fbbf24" />
+                <rect x="44" y="153" width="28" height="4" rx="1.5" fill="#38bdf8" />
+                <rect x="8" y="162" width="54" height="4" rx="1.5" fill="#f472b6" />
+                <rect x="0" y="171" width="40" height="4" rx="1.5" fill="#34d399" />
+              </g>
+            </g>
+
+            <line x1="0" y1="49" x2="84" y2="49" stroke="#1f2937" stroke-width="1.2" />
+
+            <!-- Tech Stack Readout -->
+            <text id="vert-screen-heading" x="0" y="61" font-family="'IBM Plex Mono', monospace" font-weight="600" font-size="6.2" fill="#93c5fd">// TECH STACK</text>
+            <text id="vert-screen-b0" x="0" y="73" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#cbd5e1">• Python · SQL · C++</text>
+            <text id="vert-screen-b1" x="0" y="84" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#cbd5e1">• Spark · Databricks</text>
+            <text id="vert-screen-b2" x="0" y="95" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#cbd5e1">• AWS · GCP · Docker</text>
+            <text id="vert-screen-b3" x="0" y="106" font-family="'IBM Plex Mono', monospace" font-size="5.6" fill="#cbd5e1">• ML · Identity Infra</text>
+
+            <line x1="0" y1="116" x2="84" y2="116" stroke="#1f2937" stroke-width="1.2" />
+
+            <!-- Full-Width Animated Equalizer / Audio Meter Widget at Bottom of Vertical Screen -->
+            <rect x="0" y="121" width="84" height="32" rx="3" fill="#111827" stroke="#1e293b" stroke-width="1" />
+            <g class="eq-bars">
+              <rect x="4" y="133" width="4" height="16" rx="1" fill="#34d399" />
+              <rect x="10.5" y="128" width="4" height="21" rx="1" fill="#38bdf8" />
+              <rect x="17" y="137" width="4" height="12" rx="1" fill="#34d399" />
+              <rect x="23.5" y="126" width="4" height="23" rx="1" fill="#a78bfa" />
+              <rect x="30" y="131" width="4" height="18" rx="1" fill="#34d399" />
+              <rect x="36.5" y="129" width="4" height="20" rx="1" fill="#38bdf8" />
+              <rect x="43" y="135" width="4" height="14" rx="1" fill="#34d399" />
+              <rect x="49.5" y="126" width="4" height="23" rx="1" fill="#fbbf24" />
+              <rect x="56" y="132" width="4" height="17" rx="1" fill="#34d399" />
+              <rect x="62.5" y="128" width="4" height="21" rx="1" fill="#38bdf8" />
+              <rect x="69" y="134" width="4" height="15" rx="1" fill="#a78bfa" />
+              <rect x="75.5" y="130" width="4" height="19" rx="1" fill="#34d399" />
+            </g>
+          </g>
+        </g>
+        <circle cx="724" cy="345" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 3E. RIGHT STUDIO MONITOR SPEAKER (KRK Rokit Style, Toed-In) -->
+      <g class="clickable-item" data-id="speakers" data-label="Studio Monitors — DJ Databass" tabindex="0" role="button">
+        <g>
+          <!-- Acoustic Isolation Foam Pad (Matched Perspective Base, Zero Corner Gap) -->
+          <polygon points="863,456 874,453 874,459 863,463" fill="#18181b" stroke="#09090b" stroke-width="1" stroke-linejoin="round" />
+          <rect x="810" y="456" width="54" height="7" rx="1.8" fill="#27272a" stroke="#09090b" stroke-width="1.2" />
+          <line x1="812" y1="459.5" x2="862" y2="459.5" stroke="#3f3f46" stroke-width="0.9" />
+          <!-- Outer Right Side Cabinet Wall (Receding Toe-In Perspective) -->
+          <polygon points="860,366 874,371 874,453 860,456" fill="#0f0f12" stroke="#27272a" stroke-width="1.1" stroke-linejoin="round" />
+          <!-- Matte Black Rounded Acoustic Baffle -->
+          <rect x="810" y="364" width="54" height="92" rx="4.5" fill="#18181b" stroke="#09090b" stroke-width="1.8" />
+          <rect x="814" y="368.5" width="46" height="83" rx="3" fill="#202127" />
+          <!-- Top KRK Accent & Silk-Dome Waveguide Tweeter -->
+          <rect x="832" y="373" width="10" height="2" rx="1" fill="#eab308" opacity="0.9" />
+          <ellipse cx="837" cy="387" rx="9.5" ry="7.6" fill="#141418" stroke="#33353e" stroke-width="1.2" />
+          <circle cx="837" cy="387" r="4.3" fill="#09090b" stroke="#27272a" stroke-width="0.8" />
+          <path d="M834.5 385.2 A3 3 0 0 1 838.5 384.5" fill="none" stroke="#52525b" stroke-width="1" stroke-linecap="round" />
+          <!-- Iconic Yellow Kevlar Woofer Cone -->
+          <g class="speaker-cone">
+            <circle cx="837" cy="418" r="18" fill="#09090b" stroke="#33353e" stroke-width="1.4" />
+            <circle cx="837" cy="418" r="14" fill="#eab308" />
+            <circle cx="837" cy="418" r="9.8" fill="none" stroke="#ca8a04" stroke-width="1.2" />
+            <circle cx="837" cy="418" r="5" fill="#111115" stroke="#27272a" stroke-width="1" />
+            <circle cx="825.5" cy="406.5" r="0.9" fill="#52525b" />
+            <circle cx="848.5" cy="406.5" r="0.9" fill="#52525b" />
+            <circle cx="825.5" cy="429.5" r="0.9" fill="#52525b" />
+            <circle cx="848.5" cy="429.5" r="0.9" fill="#52525b" />
+          </g>
+          <!-- Front Bass Reflex Slot -->
+          <rect x="821" y="442.5" width="32" height="4" rx="2" fill="#09090b" stroke="#27272a" stroke-width="0.8" />
+        </g>
+        <circle cx="837" cy="408" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 3F. PSA 10 GIRATINA V POKEMON SLAB (Right Side of Desk) -->
+      <g class="clickable-item" data-id="slab" data-label="PSA 10 Giratina V Slab" tabindex="0" role="button" transform="translate(170, 0)">
+        <!-- Generous Touch Hitbox for Mobile -->
+        <rect x="713" y="416" width="44" height="68" fill="transparent" />
+        <!-- Flat Pill Contact Shadow on White Desk -->
+        <rect x="718" y="478" width="34" height="4.5" rx="2.25" fill="#cbd5e1" />
+        <g>
+          <!-- Minimalist Acrylic Display Stand Base -->
+          <polygon points="722,475 748,475 751,480 719,480" fill="#e2e8f0" stroke="#64748b" stroke-width="1" stroke-linejoin="round" />
+          <!-- Clear Acrylic PSA Slab Case -->
+          <rect x="720" y="424" width="30" height="52" rx="3" fill="#f8fafc" stroke="#64748b" stroke-width="1.3" />
+          <rect x="722" y="426" width="26" height="48" rx="2" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="0.8" />
+          <!-- Red-Bordered PSA 10 Label -->
+          <rect x="723" y="427.5" width="24" height="9" rx="1" fill="#ffffff" stroke="#dc2626" stroke-width="1.2" />
+          <line x1="725" y1="430" x2="736" y2="430" stroke="#1e293b" stroke-width="1" />
+          <line x1="725" y1="432.5" x2="732" y2="432.5" stroke="#64748b" stroke-width="0.8" />
+          <rect x="733.5" y="433.8" width="3" height="1.8" rx="0.3" fill="#2563eb" />
+          <text x="745.2" y="434" text-anchor="end" font-family="'IBM Plex Mono', monospace" font-weight="600" font-size="4.8" fill="#0f172a">10</text>
+          <!-- Giratina V Lost Origin Alt Art Card -->
+          <rect x="723.5" y="438.5" width="23" height="33.5" rx="1.5" fill="#0f172a" stroke="#94a3b8" stroke-width="0.9" />
+          <!-- Distortion World Nebula & Portals -->
+          <circle cx="735" cy="452" r="8.5" fill="#7c3aed" opacity="0.28" />
+          <path d="M726 446 Q735 441 744 447" fill="none" stroke="#a855f7" stroke-width="1.2" opacity="0.65" />
+          <!-- Giratina Silhouette, Gold Crest/Ribs & Crimson Wings -->
+          <path d="M729 459 Q735 446 741 459 Q735 462 729 459 Z" fill="#1e293b" stroke="#334155" stroke-width="0.7" />
+          <path d="M726.5 455 Q730 447 733 451" fill="none" stroke="#ef4444" stroke-width="1.4" stroke-linecap="round" />
+          <path d="M743.5 455 Q740 447 737 451" fill="none" stroke="#ef4444" stroke-width="1.4" stroke-linecap="round" />
+          <path d="M731.5 448.5 Q735 444.5 738.5 448.5" fill="none" stroke="#facc15" stroke-width="1.5" stroke-linecap="round" />
+          <line x1="732" y1="453" x2="738" y2="453" stroke="#facc15" stroke-width="1.1" stroke-linecap="round" />
+          <line x1="731.5" y1="456" x2="738.5" y2="456" stroke="#facc15" stroke-width="1.1" stroke-linecap="round" />
+          <!-- Card V-Rule & Move Text Lines -->
+          <path d="M726.5 464.5 H743.5" stroke="#38bdf8" stroke-width="1" opacity="0.85" />
+          <path d="M726.5 467.5 H738.5" stroke="#94a3b8" stroke-width="0.8" />
+          <!-- Subtle Acrylic Specular Sheen -->
+          <polygon points="722,426 732,426 722,446" fill="#ffffff" opacity="0.32" />
+        </g>
+        <circle cx="735" cy="449" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 3G. BLACK TOYOTA GR86 SCALE MODEL (Right Side of Desk) -->
+      <g class="clickable-item" data-id="gr86" data-label="Toyota GR86 Scale Model" tabindex="0" role="button" transform="translate(170, 0)">
+        <!-- Generous Touch Hitbox for Mobile -->
+        <rect x="752" y="452" width="66" height="36" fill="transparent" />
+        <!-- Flat Pill Contact Shadow on White Desk -->
+        <rect x="757" y="480.5" width="56" height="5.5" rx="2.75" fill="#cbd5e1" />
+        <!-- Dark Wheel-Well Backing -->
+        <circle cx="769" cy="478" r="5.8" fill="#09090b" />
+        <circle cx="799" cy="478" r="5.8" fill="#09090b" />
+        <!-- Sculpted Fastback Coupe Body (Raven Black GR86 with Ducktail) -->
+        <path
+          d="M758 477.5
+             L758.5 473.5
+             Q760 469.5 771.5 467.5
+             L780 461
+             Q789 459.2 797.5 461.5
+             L805.5 466.5
+             L809.5 465.5
+             L811 471.5
+             L809.5 478
+             L804.8 478
+             A6 6 0 0 0 793.2 478
+             L774.8 478
+             A6 6 0 0 0 763.2 478
+             Z"
+          fill="#141418"
+          stroke="#09090b"
+          stroke-width="1.2"
+          stroke-linejoin="round"
+        />
+        <!-- Subtle Raven Black Metallic Body, Wheel-Arch & Roof Highlights -->
+        <path
+          d="M762 471 Q768 468.5 773 468.5
+             M780.5 461.2 Q789 459.8 796.5 461.8
+             M776 472 H792
+             M763.2 477.5 A6 6 0 0 1 774.8 477.5
+             M793.2 477.5 A6 6 0 0 1 804.8 477.5"
+          fill="none"
+          stroke="#3f3f46"
+          stroke-width="0.9"
+          stroke-linecap="round"
+        />
+        <!-- Fastback Side Glass & B-Pillar -->
+        <polygon points="773.5,467 781.5,461.8 795.5,462.2 801.5,467" fill="#334155" stroke="#1e293b" stroke-width="0.7" stroke-linejoin="round" />
+        <line x1="788.5" y1="462" x2="787.5" y2="467" stroke="#141418" stroke-width="1.3" />
+        <line x1="777" y1="465.5" x2="783" y2="463" stroke="#94a3b8" stroke-width="0.8" opacity="0.65" />
+        <!-- Side Mirror -->
+        <rect x="774" y="465.8" width="3" height="2" rx="0.8" fill="#18181b" stroke="#3f3f46" stroke-width="0.5" />
+        <!-- Swept LED Headlight, Front Grille Accent & Taillight -->
+        <polygon points="759,472.5 765,470.5 763.5,473.5" fill="#e0f2fe" />
+        <rect x="758.5" y="475" width="2.4" height="1.4" rx="0.4" fill="#ef4444" />
+        <rect x="807.5" y="469.5" width="2.8" height="2" rx="0.6" fill="#ef4444" />
+        <!-- Front & Rear Matte Gunmetal Multi-Spoke Wheels -->
+        <circle cx="769" cy="478" r="4.8" fill="#09090b" stroke="#3f3f46" stroke-width="1" />
+        <circle cx="769" cy="478" r="2.6" fill="#27272a" stroke="#71717a" stroke-width="0.7" />
+        <path d="M767.2 476.2 L770.8 479.8 M770.8 476.2 L767.2 479.8" stroke="#71717a" stroke-width="0.65" />
+        <circle cx="799" cy="478" r="4.8" fill="#09090b" stroke="#3f3f46" stroke-width="1" />
+        <circle cx="799" cy="478" r="2.6" fill="#27272a" stroke="#71717a" stroke-width="0.7" />
+        <path d="M797.2 476.2 L800.8 479.8 M800.8 476.2 L797.2 479.8" stroke="#71717a" stroke-width="0.65" />
+        <circle cx="785" cy="469" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 3F. BLACK MECHANICAL KEYBOARD (Center White Desk) -->
+      <g class="clickable-item" data-id="keyboard" data-label="Black Mechanical Keyboard" tabindex="0" role="button">
+        <!-- Subtle Desk Contact Shadow -->
+        <rect x="456" y="484" width="154" height="5" rx="2.5" fill="#cbd5e1" />
+        <!-- Perspective Matte Black 75% Aluminum Case -->
+        <polygon
+          points="461,463 605,463 609,482 457,482"
+          fill="#18181b"
+          stroke="#09090b"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <!-- Front Bevel Lip -->
+        <polygon points="457,482 609,482 607.5,486 458.5,486" fill="#09090b" />
+        <line x1="462" y1="464" x2="604" y2="464" stroke="#3f3f46" stroke-width="0.8" />
+        <!-- Recessed Keywell -->
+        <polygon points="464,465.5 602,465.5 605,480 461,480" fill="#09090b" />
+        <!-- Clean Grouped Keycap Blocks (F-Row, Alpha Clusters, Spacebar & Arrows) -->
+        <g>
+          <!-- Row 1: Esc + F-Row Clusters -->
+          <rect x="464.5" y="466.4" width="6.5" height="2.3" rx="0.5" fill="#ef4444" />
+          <rect x="473.5" y="466.4" width="32" height="2.3" rx="0.5" fill="#27272a" />
+          <rect x="508" y="466.4" width="34" height="2.3" rx="0.5" fill="#27272a" />
+          <rect x="544.5" y="466.4" width="34" height="2.3" rx="0.5" fill="#27272a" />
+          <rect x="581" y="466.4" width="13" height="2.3" rx="0.5" fill="#27272a" />
+          <!-- Row 2: Number / Top Alpha Cluster -->
+          <rect x="463.5" y="469.8" width="14" height="2.4" rx="0.5" fill="#27272a" />
+          <rect x="479.5" y="469.8" width="84" height="2.4" rx="0.5" fill="#27272a" />
+          <rect x="565.5" y="469.8" width="22" height="2.4" rx="0.5" fill="#27272a" />
+          <rect x="589.5" y="469.8" width="12.5" height="2.4" rx="0.5" fill="#27272a" />
+          <!-- Row 3: Home / Shift Row -->
+          <rect x="462.5" y="473.3" width="18" height="2.4" rx="0.5" fill="#27272a" />
+          <rect x="482.5" y="473.3" width="76" height="2.4" rx="0.5" fill="#27272a" />
+          <rect x="560.5" y="473.3" width="24" height="2.4" rx="0.5" fill="#27272a" />
+          <rect x="586.5" y="473.3" width="16.5" height="2.4" rx="0.5" fill="#27272a" />
+          <!-- Row 4: Bottom Modifiers, Spacebar & Arrow Cluster -->
+          <rect x="461.5" y="476.8" width="10" height="2.5" rx="0.5" fill="#3f3f46" />
+          <rect x="473.5" y="476.8" width="24" height="2.5" rx="0.5" fill="#3f3f46" />
+          <rect x="500" y="476.8" width="54" height="2.5" rx="0.6" fill="#3f3f46" />
+          <rect x="556.5" y="476.8" width="22" height="2.5" rx="0.5" fill="#3f3f46" />
+          <rect x="581" y="476.8" width="23" height="2.5" rx="0.5" fill="#27272a" />
+        </g>
+        <!-- Knurled Rotary Knob -->
+        <circle cx="598.5" cy="467.8" r="2.3" fill="#3f3f46" stroke="#71717a" stroke-width="0.7" />
+        <circle cx="598.5" cy="467.8" r="0.9" fill="#a1a1aa" />
+        <circle cx="472" cy="474" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 3G. BLACK WIRELESS MOUSE (Right of Keyboard on White Desk) -->
+      <g class="clickable-item" data-id="mouse" data-label="Black Wireless Gaming Mouse" tabindex="0" role="button">
+        <!-- Crisp Cool-Slate Felt Mousepad (High Contrast vs White Desk & Black Mouse) -->
+        <path
+          d="M631 463 H698 Q701 463 702 466 L706 482 Q707 485 704 485 H628 Q625 485 626 482 L629 466 Q630 463 631 463 Z"
+          fill="#cbd5e1"
+          stroke="#94a3b8"
+          stroke-width="1.1"
+        />
+        <!-- Mouse Contact Shadow on Pad -->
+        <ellipse cx="665" cy="476.5" rx="9" ry="7" fill="#94a3b8" opacity="0.65" />
+        <!-- Matte Black Ergonomic Wireless Mouse (Rear-View Proportions) -->
+        <path
+          d="M656 472.5 C656 465.5, 659.5 463.5, 664 463.5 C668.5 463.5, 672 465.5, 672 472.5 C672 478.5, 668.5 481, 664 481 C659.5 481, 656 478.5, 656 472.5 Z"
+          fill="#18181b"
+          stroke="#09090b"
+          stroke-width="1.4"
+        />
+        <path d="M658 471 Q664 468.5 670 471" fill="none" stroke="#3f3f46" stroke-width="0.9" stroke-linecap="round" />
+        <line x1="664" y1="463.8" x2="664" y2="469.5" stroke="#09090b" stroke-width="0.9" />
+        <!-- Scroll Wheel & DPI Indicator -->
+        <rect x="663" y="465.2" width="2" height="3.8" rx="1" fill="#71717a" />
+        <circle cx="664" cy="471.5" r="0.9" fill="#4ade80" />
+        <circle cx="664" cy="474" r="6" class="xray-pin" />
+      </g>
+
+      <!-- ================= 4. IDLE GAVIN & BRANCH ERGONOMIC CHAIR ================= -->
+      <!-- 4A. IDLE GAVIN (Clickable — 2 Arms, Legs & Sneakers, Natural Back-of-Head) -->
+      <g class="clickable-item" data-id="gavin" data-label="Gavin Meregillano — Click Me!" tabindex="0" role="button">
+        <!-- Legs & Sneakers (Grounded on Floor Clear of Chair Base Spokes) -->
+        <g>
+          <!-- Subtle Sneaker Floor Contact Shadows -->
+          <ellipse cx="515" cy="654.5" rx="12" ry="2.2" fill="#1e2028" opacity="0.14" />
+          <ellipse cx="569" cy="654.5" rx="12" ry="2.2" fill="#1e2028" opacity="0.14" />
+          <!-- Left Leg (Dark Jeans/Joggers) -->
+          <path d="M510 588 L508 645 H524 L528 588 Z" fill="#1e293b" stroke="#0f172a" stroke-width="1.6" stroke-linejoin="round" />
+          <!-- Right Leg (Dark Jeans/Joggers) -->
+          <path d="M556 588 L560 645 H576 L574 588 Z" fill="#1e293b" stroke="#0f172a" stroke-width="1.6" stroke-linejoin="round" />
+          <!-- Left Sneaker -->
+          <path d="M506 644 H525 L527 654 Q515 657 503 653 Z" fill="#f8fafc" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round" />
+          <path d="M507 645 H524 V648.5 Q515 650 507 648 Z" fill="#334155" opacity="0.22" />
+          <path d="M503.5 652.5 H526.5" stroke="#0f172a" stroke-width="1.7" stroke-linecap="round" />
+          <!-- Right Sneaker -->
+          <path d="M559 644 H578 L581 653 Q569 657 557 654 Z" fill="#f8fafc" stroke="#1e293b" stroke-width="1.5" stroke-linejoin="round" />
+          <path d="M560 645 H577 V648 Q569 650 560 648.5 Z" fill="#334155" opacity="0.22" />
+          <path d="M557.5 652.5 H580.5" stroke="#0f172a" stroke-width="1.7" stroke-linecap="round" />
+        </g>
+
+        <g class="gavin-idle-group">
+          <!-- Left Arm & Hand (Smooth Organic Curve Resting on Armrest to Keyboard) -->
+          <path d="M488 504 C470 518, 466 516, 493 475" fill="none" stroke="#0f172a" stroke-width="17.5" stroke-linecap="round" />
+          <path d="M488 504 C470 518, 466 516, 493 475" fill="none" stroke="#1e293b" stroke-width="14.2" stroke-linecap="round" />
+          <path d="M490 475 C490 469, 495 467, 500 469 C503 470, 504 475, 500 478 C496 480, 491 479, 490 475 Z" fill="#dca888" stroke="#1e293b" stroke-width="1.2" stroke-linejoin="round" />
+
+          <!-- Right Arm & Hand (Smooth Organic Curve Resting on Armrest, Palm Cupping Mouse) -->
+          <path d="M594 494 C606 518, 616 518, 653 482" fill="none" stroke="#0f172a" stroke-width="17.5" stroke-linecap="round" />
+          <path d="M594 494 C606 518, 616 518, 653 482" fill="none" stroke="#1e293b" stroke-width="14.2" stroke-linecap="round" />
+          <path d="M654 480 C653 474, 657 468, 663 468 C668 468, 672 472, 671 477 C670 481, 661 484, 654 480 Z" fill="#dca888" stroke="#1e293b" stroke-width="1.2" stroke-linejoin="round" />
+
+          <!-- Hoodie Torso & Shoulders -->
+          <path
+            d="M478 566 C476 496, 496 472, 542 472 C588 472, 608 496, 606 566 Z"
+            fill="url(#hoodie-grad)"
+            stroke="#0f172a"
+            stroke-width="2"
+          />
+          <!-- Hoodie Hood Fold on Upper Back (Clears Chair Top Frame) -->
+          <path
+            d="M509 475 Q542 491 575 475 Q564 464 542 464 Q520 464 509 475 Z"
+            fill="#334155"
+            stroke="#0f172a"
+            stroke-width="1.6"
+            stroke-linejoin="round"
+          />
+
+          <!-- Back of Neck -->
+          <path d="M533 443 H551 V466 Q542 470 533 466 Z" fill="#dca888" stroke="#1e293b" stroke-width="1.4" />
+          <path d="M534 445 Q542 450 550 445" fill="none" stroke="#b98364" stroke-width="2" />
+
+          <!-- Head & Natural Back-of-Head Hair (Idle Head-Bob Group) -->
+          <g class="gavin-head-group">
+            <!-- Studio Headphone Band (Clears Crown Cleanly) -->
+            <path d="M502 414 C502 346, 582 346, 582 414" fill="none" stroke="#09090b" stroke-width="7.5" stroke-linecap="round" />
+            <path d="M502 414 C502 346, 582 346, 582 414" fill="none" stroke="#27272a" stroke-width="4.8" stroke-linecap="round" />
+
+            <!-- Head Base (Ears/Sides Covered by Hair Nape Below) -->
+            <ellipse cx="542" cy="412" rx="33" ry="32.5" fill="#dca888" stroke="#1e293b" stroke-width="1.6" />
+
+            <!-- Full Back-of-Head Dark Hair Covering Lower Curve Cleanly -->
+            <path
+              d="M508 416
+                 C506 380, 521 372, 542 372
+                 C563 372, 578 380, 576 416
+                 C576 434, 562 445.5, 542 445.5
+                 C522 445.5, 508 434, 508 416 Z"
+              fill="#141418"
+            />
+            <!-- Subtle Crown Hair Highlight -->
+            <path d="M521 384 Q538 375 557 381" fill="none" stroke="#27272a" stroke-width="1.8" stroke-linecap="round" />
+            <path d="M525 432 Q542 437 559 432" fill="none" stroke="#27272a" stroke-width="1.3" stroke-linecap="round" opacity="0.65" />
+
+            <!-- Over-Ear Studio Headphone Cups -->
+            <rect x="495.5" y="401" width="10.5" height="26" rx="5" fill="#18181b" stroke="#3f3f46" stroke-width="1.4" />
+            <rect x="578" y="401" width="10.5" height="26" rx="5" fill="#18181b" stroke="#3f3f46" stroke-width="1.4" />
+            <line x1="498.5" y1="409" x2="498.5" y2="419" stroke="#4ade80" stroke-width="1.4" stroke-linecap="round" />
+            <line x1="585.5" y1="409" x2="585.5" y2="419" stroke="#4ade80" stroke-width="1.4" stroke-linecap="round" />
+          </g>
+        </g>
+        <circle cx="542" cy="412" r="6" class="xray-pin" />
+      </g>
+
+      <!-- 4B. BRANCH ERGONOMIC CHAIR (White Frame + Black Ribbed Mesh + Silver 5-Star Base) -->
+      <g class="clickable-item" data-id="chair" data-label="Branch Ergonomic Chair" tabindex="0" role="button">
+        <!-- Silver 5-Star Wheeled Base & Pneumatic Gas Lift -->
+        <g>
+          <!-- Pneumatic Piston (Thin Upper) + Outer Cylinder (Thick Lower) -->
+          <rect x="537" y="592" width="10" height="40" rx="2" fill="#475569" stroke="#1e293b" stroke-width="1.2" />
+          <rect x="534" y="624" width="16" height="35" rx="3" fill="#1e293b" stroke="#0f172a" stroke-width="1.2" />
+
+          <!-- Brushed Aluminum 5-Star Legs (True 3D Radial Perspective, Clean Outline + Fill) -->
+          <g fill="none" stroke-linecap="round">
+            <path d="M542 658 L478 670 M542 658 L606 670 M542 658 L502 681 M542 658 L582 681 M542 658 L542 685" stroke="#94a3b8" stroke-width="7.4" />
+            <path d="M542 658 L478 670 M542 658 L606 670 M542 658 L502 681 M542 658 L582 681 M542 658 L542 685" stroke="#e2e8f0" stroke-width="4.8" />
+          </g>
+          <ellipse cx="542" cy="658" rx="9" ry="5" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.2" />
+
+          <!-- Twin Casters with Caster Hoods -->
+          <g>
+            <circle cx="478" cy="675" r="5.2" fill="#18181b" stroke="#3f3f46" stroke-width="1.2" />
+            <circle cx="478" cy="675" r="1.7" fill="#71717a" />
+            <path d="M474 671 Q478 668.5 482 671" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" />
+
+            <circle cx="502" cy="685" r="5.2" fill="#18181b" stroke="#3f3f46" stroke-width="1.2" />
+            <circle cx="502" cy="685" r="1.7" fill="#71717a" />
+            <path d="M498 681 Q502 678.5 506 681" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" />
+
+            <circle cx="542" cy="689" r="5.2" fill="#18181b" stroke="#3f3f46" stroke-width="1.2" />
+            <circle cx="542" cy="689" r="1.7" fill="#71717a" />
+            <path d="M538 685 Q542 682.5 546 685" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" />
+
+            <circle cx="582" cy="685" r="5.2" fill="#18181b" stroke="#3f3f46" stroke-width="1.2" />
+            <circle cx="582" cy="685" r="1.7" fill="#71717a" />
+            <path d="M578 681 Q582 678.5 586 681" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" />
+
+            <circle cx="606" cy="675" r="5.2" fill="#18181b" stroke="#3f3f46" stroke-width="1.2" />
+            <circle cx="606" cy="675" r="1.7" fill="#71717a" />
+            <path d="M602 671 Q606 668.5 610 671" fill="none" stroke="#64748b" stroke-width="2" stroke-linecap="round" />
+          </g>
+        </g>
+
+        <!-- White Adjustable Armrests with Slate Pads (Aligned Beneath Elbows) -->
+        <path d="M472 528 V572 Q472 582 484 582 H494" fill="none" stroke="#94a3b8" stroke-width="8.4" stroke-linecap="round" />
+        <path d="M472 528 V572 Q472 582 484 582 H494" fill="none" stroke="#f8fafc" stroke-width="5.8" stroke-linecap="round" />
+        <rect x="460" y="521" width="24" height="6.5" rx="3.2" fill="#475569" stroke="#334155" stroke-width="1" />
+
+        <path d="M612 528 V572 Q612 582 600 582 H590" fill="none" stroke="#94a3b8" stroke-width="8.4" stroke-linecap="round" />
+        <path d="M612 528 V572 Q612 582 600 582 H590" fill="none" stroke="#f8fafc" stroke-width="5.8" stroke-linecap="round" />
+        <rect x="600" y="521" width="24" height="6.5" rx="3.2" fill="#475569" stroke="#334155" stroke-width="1" />
+
+        <!-- Black Seat Cushion + White Under-Seat Chassis -->
+        <rect x="486" y="583" width="112" height="10" rx="5" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.3" />
+        <rect x="482" y="573" width="120" height="12.5" rx="6" fill="#18181b" stroke="#27272a" stroke-width="1.3" />
+
+        <!-- Branch White-Framed Tapered Black Ribbed Mesh Backrest (Top Below Hood) -->
+        <path
+          d="M499 491
+             Q542 487 585 491
+             L594 568
+             Q594 577 583 577
+             H501
+             Q490 577 490 568 Z"
+          fill="#f8fafc"
+          stroke="#94a3b8"
+          stroke-width="1.5"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M504 496
+             Q542 492.5 580 496
+             L587 566
+             Q587 572 580 572
+             H504
+             Q497 572 497 566 Z"
+          fill="#18181b"
+        />
+        <!-- Refined Subtle Horizontal Woven Mesh Ribs -->
+        <g stroke="#334155" stroke-width="0.9" opacity="0.45">
+          <line x1="504" y1="504" x2="580" y2="504" />
+          <line x1="503" y1="513" x2="581" y2="513" />
+          <line x1="502" y1="522" x2="582" y2="522" />
+          <line x1="501" y1="531" x2="583" y2="531" />
+          <line x1="500" y1="540" x2="584" y2="540" />
+          <line x1="499" y1="549" x2="585" y2="549" />
+          <line x1="499" y1="558" x2="585" y2="558" />
+          <line x1="500" y1="566" x2="584" y2="566" />
+        </g>
+        <!-- Seamless Center Spine Support & Contoured White Lumbar Bar -->
+        <path d="M537 545 H547 L549 583 H535 Z" fill="#f1f5f9" stroke="#94a3b8" stroke-width="1.1" stroke-linejoin="round" />
+        <path
+          d="M497 543 Q542 545.5 587 543 Q589 547 587 551 Q542 553.5 497 551 Q495 547 497 543 Z"
+          fill="#f8fafc"
+          stroke="#94a3b8"
+          stroke-width="1.1"
+          stroke-linejoin="round"
+        />
+
+        <circle cx="542" cy="532" r="6" class="xray-pin" />
+      </g>
+
+      <!-- Soundwave Rings in DJ Databass Mode (Concentric with KRK Woofers) -->
+      <g class="dj-soundwaves" pointer-events="none">
+        <circle cx="363" cy="420" r="28" fill="none" stroke="#4ade80" stroke-width="1.8" class="wave-ring" />
+        <circle cx="837" cy="420" r="28" fill="none" stroke="#4ade80" stroke-width="1.8" class="wave-ring" />
+      </g>
+      </g>
+
+      <!-- Subtle 3% Monochromatic Film-Grain Texture Overlay -->
+      <rect x="-3000" y="-2400" width="7200" height="5400" filter="url(#film-grain)" pointer-events="none" />
+    </svg>
+  </main>
+
+  <!-- ================= POINTED CALLOUT MODAL OVERLAY ================= -->
+  <div id="modal-backdrop" class="modal-backdrop" hidden></div>
+
+  <aside
+    id="pointed-modal"
+    class="pointed-modal"
+    role="dialog"
+    aria-modal="false"
+    aria-labelledby="modal-title"
+    hidden
+  >
+    <!-- Directional Pointer Beak (positioned dynamically toward clicked object) -->
+    <div id="modal-arrow" class="modal-arrow"></div>
+
+    <div class="modal-inner">
+      <div class="modal-topbar">
+        <span id="modal-part-id" class="modal-part-id">PART // 01</span>
+        <span id="modal-category" class="modal-category">ABOUT</span>
+        <button type="button" id="modal-close" class="modal-close" aria-label="Close">×</button>
+      </div>
+
+      <div id="modal-content" class="modal-content">
+        <!-- Populated dynamically by script.js -->
+      </div>
+    </div>
+  </aside>
+
+  <script src="content.js?v=12"></script>
+  <script src="script.js?v=12"></script>
 </body>
 </html>
